@@ -48,25 +48,104 @@
 	//Перегрузки операторов
 
 	//Алгебраические операторы
-	Integer Integer::operator + (const Integer& counter) const
-	{
 
-		return Integer{ value_ + counter.value_ };
+	//Оператор сложения, работает точно так, как должен работать +
+	Integer Integer::operator + (const Integer& other) const
+	{
+		Integer result;
+		if (sign_ == other.sign_) 
+		{
+			result.sign_ = sign_;
+			result.value_ = value_ + other.value_;
+		}
+		else {
+			if (value_ > other.value_)
+			{
+				result.sign_ = sign_;
+				result.value_ = value_ - other.value_;
+			}
+			else if (value_ < other.value_) {
+				result.sign_ = other.sign_;
+				result.value_ = other.value_ - value_;
+			}
+			else {
+				result.sign_ = false;
+				result.value_ = true;
+			}
+		}
+		return result;
+		
 	}
-
-	Integer Integer::operator * (const Integer& counter) const
+	//Оператор умножения
+	Integer Integer::operator * (const Integer& other) const
 	{
-		return Integer{ value_ * counter.value_ };
+		Integer result;
+		if (sign_ == other.sign_)
+		{
+			result.sign_ = sign_;
+			result.value_ = value_ * other.value_;
+		}
+		else if (sign_ != other.sign_) {
+
+			result.sign_ = false;
+			result.value_ = value_ * other.value_;
+		}
+		return result;
 	}
-
-	Integer Integer::operator / (const Integer& counter) const
+	//Оператор деления
+	Integer Integer::operator / (const Integer& other) const
 	{
-		return Integer{ value_ / counter.value_ };
+		Integer result;
+		if (sign_ == other.sign_)
+		{
+			result.sign_ = sign_;
+			result.value_ = value_ / other.value_;
+		}
+		else if (sign_ != other.sign_) {
+
+			result.sign_ = false;
+			result.value_ = value_ / other.value_;
+		}
+		return result;
 	}
-
-	Integer Integer::operator - (const Integer& counter) const
+	//Оператор вычитания
+	Integer Integer::operator - (const Integer& other) const
 	{
-		return Integer{ value_ - counter.value_ };
+		Integer result;
+		if (sign_ == other.sign_ && sign_ == true && value_ > other.value_)
+		{
+			result.sign_ = sign_;
+			result.value_ = value_ - other.value_;
+		}
+		else if (sign_ == other.sign_ && sign_ == true && value_ < other.value_) {
+			result.sign_ = !sign_;
+			result.value_ = other.value_ - value_;
+		}
+		else if (sign_ == other.sign_ && sign_ == false && value_ > other.value_) {
+			result.sign_ = sign_;
+			result.value_ = other.value_ + value_;
+		}
+		else if (sign_ == other.sign_&& sign_ == false && value_ < other.value_) {
+			result.sign_ = sign_;
+			result.value_ = other.value_ + value_;
+		}
+		else if (sign_ != other.sign_ && sign_ == true && value_ > other.value_) {
+			result.sign_ = sign_;
+			result.value_ = value_ - other.value_;
+		}
+		else if (sign_ != other.sign_ && sign_ == false && value_ > other.value_) {
+			result.sign_ = sign_;
+			result.value_ = value_ - other.value_;
+		}
+		else if (sign_ != other.sign_ && sign_ == true && value_ > other.value_) {
+			result.sign_ = sign_;
+			result.value_ = value_ - other.value_;
+		}
+		else if (sign_ != other.sign_ && sign_ == false && value_ < other.value_) {
+			result.sign_ = other.sign_;
+			result.value_ = other.value_ - value_;
+		}
+
 	}
 	Integer Integer::operator % (const Integer& counter) const
 	{
