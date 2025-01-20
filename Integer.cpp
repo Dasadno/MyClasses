@@ -49,7 +49,7 @@
 
 	//Алгебраические операторы
 
-	//Оператор сложения, работает точно так, как должен работать +
+	
 	Integer Integer::operator + (const Integer& other) const
 	{
 		Integer result;
@@ -154,30 +154,60 @@
 
 
 	// Операторы сравнения
-	bool Integer::operator == (const Integer & counter) const
-	{
-		return value_ == counter.value_;
-	}
-	bool Integer::operator != (const Integer& counter) const
-	{
-		return value_ != counter.value_;
-	}
-	bool Integer::operator > (const Integer& counter) const
-	{
 
-		return value_ > counter.value_;
-	}
-	bool Integer::operator < (const Integer& counter) const
+	bool Integer::operator == (const Integer & other) const
 	{
-		return value_ < counter.value_;
+		if (sign_ == other.sign_)
+		{
+			return value_ == other.value_;
+		}
+		return false;
 	}
 
-	//Декремент, инкремент
+	bool Integer::operator != (const Integer& other) const
+	{
+		if (sign_ == other.sign_)
+		{
+			return value_ != other.value_;
+		}
+		return false;
+	}
+
+	bool Integer::operator > (const Integer& other) const
+	{
+		if (sign_ == other.sign_)
+		{
+			return value_ > other.value_;
+		}
+		if (sign_ == true && other.sign_ == false) {
+			return true;
+		}
+		if (sign_ == false && other.sign_ == true) {
+
+		}
+	}
+	
+	bool Integer::operator < (const Integer& other) const
+	{
+		if (sign_ == other.sign_)
+		{
+			return value_ < other.value_;
+		}
+		if (sign_ == true && other.sign_ == false) {
+			return false;
+		}
+		if (sign_ == false && other.sign_ == true) {
+			return true;
+		}
+	}
+
+	//Декремент
 	Integer& Integer::operator++ ()
 	{
 		value_ += 1;
 		return *this;
 	}
+	//Инкримент
 	Integer& Integer::operator-- ()
 	{
 		value_ -= 1;
