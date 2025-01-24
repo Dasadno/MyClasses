@@ -153,22 +153,73 @@
 
 
 	// Операторы сравнения
-	bool Integer::operator == (const Integer & counter) const
+	bool Integer::operator == (const Integer & other) const
 	{
-		return value_ == counter.value_;
+		if (sign_ == other.sign_)
+		{
+			return value_ == other.value_;
+		}
+		return false;
 	}
-	bool Integer::operator != (const Integer& counter) const
+	bool Integer::operator != (const Integer& other) const
 	{
-		return value_ != counter.value_;
+		if (sign_ == other.sign_)
+		{
+			return value_ != other.value_;
+		}
+		return true;
 	}
-	bool Integer::operator > (const Integer& counter) const
+	bool Integer::operator > (const Integer& other) const
 	{
-
-		return value_ > counter.value_;
+		if (sign_ == other.sign_)
+		{
+			return value_ > other.value_;
+		}
+		else if (sign_ == true && other.sign_ == false) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-	bool Integer::operator < (const Integer& counter) const
+	bool Integer::operator < (const Integer& other) const
 	{
-		return value_ < counter.value_;
+		if (sign_ == other.sign_)
+		{
+			return value_ < other.value_;
+		}
+		else if (sign_ == true && other.sign_ == false) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	bool Integer::operator <= (const Integer& other) const
+	{
+		if (sign_ == other.sign_)
+		{
+			return value_ <= other.value_;
+		}
+		else if (sign_ == true && other.sign_ == false) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	bool Integer::operator >= (const Integer& other) const
+	{
+		if (sign_ == other.sign_)
+		{
+			return value_ >= other.value_;
+		}
+		else if (sign_ == true && other.sign_ == false) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	//Декремент, инкремент (Постфиксные)
@@ -250,7 +301,13 @@
 		return *this;
 	}
 
-	std::ostream& operator<<(std::ostream& out, const Integer& num) {
-		return out << num;
+	std::ostream& operator<<(std::ostream& out, Integer& other) {
+		if (other.sign_ == true)
+		{
+			return out << other;
+		}
+		else {
+			return out << '-' << other;
+		}
 	}
 

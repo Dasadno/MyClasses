@@ -10,21 +10,32 @@ class Fraction
 { 
     public:
         Fraction();
-        Fraction(const Integer& num, const Integer& denum);
+        Fraction(bool sign, Integer num) :sign_(sign), num_(num_) {};
+        Fraction(int number);
    
-        Fraction flip();
+        void flip();
 
         Integer getNum();
         
         Integer getDenum();
 
+        bool getSign();
+
         void FractionReduce();
+
+        void setNum(Integer num);
+
+        void setDenum(Integer num);
+
+        void setsign(bool sign);
 
         Fraction operator +(const Fraction& other) const;
       
         Fraction operator -(const Fraction& other) const;
 
-        friend std::ostream& operator<<(const std::ostream& out, Fraction num);
+        friend std::ostream& operator<<(std::ostream& out, Fraction num);
+
+        bool operator<=(const Fraction& other);
    
     private:
         bool sign_;

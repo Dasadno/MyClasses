@@ -38,20 +38,24 @@ public:
 
 
 	// Операторы сравнения
-	bool operator == (const Integer& counter)const;
+	bool operator == (const Integer& other)const;
 
-	bool operator != (const Integer& counter)const;
+	bool operator != (const Integer& other)const;
 
-	bool operator > (const Integer& counter)const;
+	bool operator > (const Integer& other)const;
 
-	bool operator < (const Integer& counter)const;
+	bool operator < (const Integer& other)const;
 
-	//Декремент, инкремент
+	bool operator <= (const Integer& other) const;
+
+	bool operator >= (const Integer& other) const;
+
+	//Префексный Декремент, Инкремент
 	Integer& operator++ ();
 
 	Integer& operator-- ();
 
-	// постфиксные операторы
+	// Постфиксный Декремент, Инкримент
 	Integer operator++ (int);
 
 	Integer operator-- (int);
@@ -64,6 +68,9 @@ public:
 	Integer& operator *= (const Integer& counter);
 
 	Integer& operator /= (const Integer& counter);
+	
+	//Оператор вывода
+	friend std::ostream& operator<<(std::ostream& out, Integer& other);
 
 private:
 	bool sign_;

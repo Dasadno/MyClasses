@@ -1,25 +1,25 @@
 #include "..\hd\Fraction.hpp"
 
 
-Fraction::Fraction(): Fraction(false, 0) { }
-Fraction::Fraction(const Integer& num, const Integer& denum) 
-{
+Fraction::Fraction(): Fraction(false, Integer(1)) { }
+Fraction::Fraction(bool sign, Integer num) :sign_(sign), num_(num_) { }
+Fraction::Fraction(int number){
     sign_ = true;
-    this->num_ = num;
-    if (num != 0)
-    {
-        this->denum_ = denum;
-    }
-    else{
-        std::cerr << "constructor value error";
-    }
+    this->num_ = number;
+    this->denum_ = Integer(1);
+    
    
 }
 
-Fraction Fraction::flip()
+void Fraction::flip()
 {
-    return Fraction(denum_, num_);
+    Integer tmp;
+    tmp = denum_;
+    denum_ = num_;
+    num_ = tmp;
+
 }
+//Геттеры
 Integer Fraction::getNum() {
     return num_;
 }
@@ -27,22 +27,41 @@ Integer Fraction::getDenum()
 {
     return denum_;
 }
+bool Fraction::getSign()
+{
+    return sign_;
+}
+//Сеттеры
+void Fraction::setNum(Integer num)
+{
+    num_ = num;
+}
+void Fraction::setDenum(Integer num)
+{
+    denum_ = num;
+}
+void Fraction::setsign(bool sign)
+{
+    sign_ = sign;
+}
 
 //Сокращает дробь
-//void Fraction::FractionReduce()
-//{
-//    for (int k = 2; k <= num_ && k <= denum_; ++k) {
-//        while (num_ % k == 0 && denum_ % k == 0) {
-//            num_ /= k;
-//            denum_ /= k;
-//        }
-//    }
-//}
+void Fraction::FractionReduce()
+{
+    for (Integer k = 2; k <= num_ && k <= denum_; ++k) {
+        while (num_ % k == 0 && denum_ % k == 0) {
+            num_ /= k;
+            denum_ /= k;
+        }
+    }
+}
 
 
- Fraction Fraction::operator +(const Fraction& other) const {
+Fraction Fraction::operator +(const Fraction& other) const {
     Integer num1;
     Integer num2;
+    bool tmpSign;
+    Fraction result;
     if (sign_ == other.sign_)
     {
         Integer num1 = num_ * other.denum_ + denum_ * other.num_;
@@ -56,13 +75,18 @@ Integer Fraction::getDenum()
         Integer num1 = num_ * other.denum_ - denum_ * other.num_;
         Integer num2 = denum_ * other.denum_;
     }
-    return Fraction(num1, num2);
+    result.num_ = num1;
+    result.denum_ = num2;
+    
+    return result;
 }
 
 
  Fraction Fraction::operator -(const Fraction& other) const {
      Integer num1;
      Integer num2;
+     bool tmpSign;
+     Fraction result;
      if (sign_ == other.sign_)
      {
          Integer SideNum = denum_ * other.num_;
@@ -85,19 +109,36 @@ Integer Fraction::getDenum()
          Integer num1 = num_ * other.denum_ - denum_ * other.num_;
          Integer num2 = denum_ * other.denum_;
      }
-     return Fraction(num1, num2);
+     result.num_ = num1;
+     result.denum_ = num2;
+     return result;
+ }
+
+ bool Fraction::operator<=(const Fraction& other) {
+     if (sign_ == other.sign_)
+     {
+         Integer SideNum = denum_ * other.num_;
+         Integer MainNum = num_ * other.denum_;
+         return MainNum <= SideNum;
+     }
+     else if (sign_ == true && other.sign_ == false) {
+         return false;
+     }
+     else {
+         return true;
+     }
  }
 
  // Оператор вывода
-//std::ostream& operator<<(const std::ostream& out, Fraction num)
-// {
-//     num.FractionReduce();
-//     if (num.denum_ == 1) {
-//         out << num.num_;
-//     }
-//     else {
-//         out << num.num_ << "/" << num.denum_;
-//     }
-//     return out;
-// }
+std::ostream& operator<<(std::ostream& out, Fraction num)
+ {
+     num.FractionReduce();
+     if (num.denum_ == 1) {
+         out << num.num_;
+     }
+     else {
+         out << num.num_ << "/" << num.denum_;
+     }
+     return out;
+ }
 
