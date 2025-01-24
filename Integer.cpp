@@ -1,4 +1,4 @@
-#include "Integer.h"
+#include "Integer.hpp"
 
 	//Конструкторы
 	Integer::Integer() :Integer(false, 0u) { }
@@ -29,9 +29,9 @@
 		return value_;
 	}
 	// Функции проверки состояния
-	bool Integer::isPrimeNum() {
+	/*bool Integer::isPrimeNum() {
 
-	}
+	}*/
 	bool Integer::isOdd(Integer val)const {
 		return val % 2 != 0;
 	}
@@ -49,7 +49,7 @@
 
 	//Алгебраические операторы
 
-	
+	//Оператор сложения
 	Integer Integer::operator + (const Integer& other) const
 	{
 		Integer result;
@@ -145,91 +145,94 @@
 			result.sign_ = other.sign_;
 			result.value_ = other.value_ - value_;
 		}
-
+		return result;
 	}
 	Integer Integer::operator % (const Integer& counter) const
 	{
-		return Integer{ value_ % counter.value_ };
+		return static_cast<Integer>( value_ % counter.value_ );
 	}
 
 
 	// Операторы сравнения
-
-	bool Integer::operator == (const Integer & other) const
+	bool Integer::operator == (const Integer & counter) const
 	{
-		if (sign_ == other.sign_)
-		{
-			return value_ == other.value_;
-		}
-		return false;
+		return value_ == counter.value_;
+	}
+	bool Integer::operator != (const Integer& counter) const
+	{
+		return value_ != counter.value_;
+	}
+	bool Integer::operator > (const Integer& counter) const
+	{
+
+		return value_ > counter.value_;
+	}
+	bool Integer::operator < (const Integer& counter) const
+	{
+		return value_ < counter.value_;
 	}
 
-	bool Integer::operator != (const Integer& other) const
-	{
-		if (sign_ == other.sign_)
-		{
-			return value_ != other.value_;
-		}
-		return false;
-	}
-
-	bool Integer::operator > (const Integer& other) const
-	{
-		if (sign_ == other.sign_)
-		{
-			return value_ > other.value_;
-		}
-		if (sign_ == true && other.sign_ == false) {
-			return true;
-		}
-		if (sign_ == false && other.sign_ == true) {
-
-		}
-	}
-	
-	bool Integer::operator < (const Integer& other) const
-	{
-		if (sign_ == other.sign_)
-		{
-			return value_ < other.value_;
-		}
-		if (sign_ == true && other.sign_ == false) {
-			return false;
-		}
-		if (sign_ == false && other.sign_ == true) {
-			return true;
-		}
-	}
-
-	//Декремент
+	//Декремент, инкремент (Постфиксные)
 	Integer& Integer::operator++ ()
 	{
-		value_ += 1;
-		return *this;
+		Integer copy{ *this };
+		if (sign_ == true) {
+			copy += 1;
+		}
+		else {
+			copy -= 1;
+		}
+		return copy;
 	}
-	//Инкримент
 	Integer& Integer::operator-- ()
 	{
-		value_ -= 1;
-		return *this;
+		Integer copy{ *this };
+		if (sign_ == true) {
+			copy -= 1;
+		}
+		else {
+			copy += 1;
+		}
+		return copy;
 	}
-	// постфиксные операторы
+	//Декремент, инкремент (Префиксные)
 	Integer Integer::operator++ (int)
 	{
 		Integer copy{ *this };
-		++(*this);
+		if (sign_ == true)
+		{
+			++(copy);
+		}
+		else {
+			--(copy);
+		}
 		return copy;
 	}
 	Integer Integer::operator-- (int)
 	{
 		Integer copy{ *this };
-		--(*this);
+		if (sign_ == true)
+		{
+			--(copy);
+		}
+		else {
+			++(copy);
+		}
 		return copy;
 	}
-	// операторы присвоения
-	Integer& Integer::operator += (const Integer& counter)
+
+	// операторы присваивания
+
+	Integer& Integer::operator += (const Integer& other)
 	{
-		value_ += counter.value_;
+		if (sign_ == other.sign_)
+		{
+			value_ += other.value_;
+		}
+		else if (sign_ == true && other.value_ == false) {
+
+		}
+		value_ += other.value_;
 		return *this;
 	}
 	Integer& Integer::operator -= (const Integer& counter)
@@ -248,4 +251,7 @@
 		return *this;
 	}
 
+	std::ostream& operator<<(std::ostream& out, const Integer& num) {
+		return out << num;
+	}
 
