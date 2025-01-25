@@ -10,7 +10,7 @@ class Fraction
 { 
     public:
         Fraction();
-        Fraction(bool sign, Integer num) :sign_(sign), num_(num_) {};
+        Fraction(bool sign, Integer num);
         Fraction(int number);
    
         void flip();

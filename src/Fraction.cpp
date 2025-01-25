@@ -60,7 +60,6 @@ void Fraction::FractionReduce()
 Fraction Fraction::operator +(const Fraction& other) const {
     Integer num1;
     Integer num2;
-    bool tmpSign;
     Fraction result;
     if (sign_ == other.sign_)
     {
@@ -85,7 +84,6 @@ Fraction Fraction::operator +(const Fraction& other) const {
  Fraction Fraction::operator -(const Fraction& other) const {
      Integer num1;
      Integer num2;
-     bool tmpSign;
      Fraction result;
      if (sign_ == other.sign_)
      {

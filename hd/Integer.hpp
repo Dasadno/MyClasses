@@ -17,7 +17,7 @@ public:
 	bool getSign()const;
 	unsigned getValue()const;
 	// Функции проверки состояния
-	bool isPrimeNum();
+	//bool isPrimeNum();
 	bool isOdd(Integer val)const;
 	bool isEven(Integer val)const;
 	bool isPositive(Integer num)const;
