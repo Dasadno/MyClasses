@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <numeric>
 
 class Integer
 {
@@ -22,6 +23,10 @@ public:
 	bool isEven(Integer val)const;
 	bool isPositive(Integer num)const;
 	bool isNegative(Integer num)const;
+	int Nod(Integer other)const;
+	bool isCoprime(Integer other)const;
+	int Nok(Integer other)const;
+	bool isSimple()const;
 
 	//Перегрузки операторов
 

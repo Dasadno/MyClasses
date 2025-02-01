@@ -2,7 +2,7 @@
 
 
 Fraction::Fraction(): Fraction(false, Integer(1)) { }
-Fraction::Fraction(bool sign, Integer num) :sign_(sign), num_(num_) { }
+Fraction::Fraction(bool sign, Integer num) :sign_(sign_), num_(num_) { }
 Fraction::Fraction(int number){
     sign_ = true;
     this->num_ = number;
