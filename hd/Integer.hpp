@@ -70,7 +70,7 @@ public:
 	Integer& operator /= (const Integer& counter);
 	
 	//Оператор вывода
-	friend std::ostream& operator<<(std::ostream& out, Integer& other);
+	friend std::ostream& operator<<(std::ostream& out, const Integer& other);
 
 private:
 	bool sign_;

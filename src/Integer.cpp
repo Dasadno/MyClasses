@@ -301,13 +301,15 @@
 		return *this;
 	}
 
-	std::ostream& operator<<(std::ostream& out, Integer& other) {
+	std::ostream& operator<<(std::ostream& out, const Integer& other) {
 		if (other.sign_ == true)
 		{
-			return out << other;
+			out << other.value_;
 		}
-		else {
-			return out << '-' << other;
+		else
+		{
+			out << '-' << other.value_;
 		}
+		return out;
 	}
 

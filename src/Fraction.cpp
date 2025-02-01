@@ -46,15 +46,15 @@ void Fraction::setsign(bool sign)
 }
 
 //Сокращает дробь
-void Fraction::FractionReduce()
-{
-    for (Integer k = 2; k <= num_ && k <= denum_; ++k) {
-        while (num_ % k == 0 && denum_ % k == 0) {
-            num_ /= k;
-            denum_ /= k;
-        }
-    }
-}
+//void Fraction::FractionReduce()
+//{
+//    for (Integer k = 2; k <= num_ && k <= denum_; ++k) {
+//        while (num_ % k == 0 && denum_ % k == 0) {
+//            num_ /= k;
+//            denum_ /= k;
+//        }
+//    }
+//}
 
 
 Fraction Fraction::operator +(const Fraction& other) const {
@@ -128,14 +128,29 @@ Fraction Fraction::operator +(const Fraction& other) const {
  }
 
  // Оператор вывода
-std::ostream& operator<<(std::ostream& out, Fraction num)
+std::ostream& operator<<(std::ostream& out, Fraction other)
  {
-     num.FractionReduce();
-     if (num.denum_ == 1) {
-         out << num.num_;
+     
+     if (other.sign_ == true)
+     {
+             if (other.denum_ == 1) {
+                 
+                 out << other.num_;
+             }
+             else {
+                 //other.FractionReduce();
+                 out << other.num_ << "/" << other.denum_;
+             }
      }
-     else {
-         out << num.num_ << "/" << num.denum_;
+     else
+     {
+         if (other.denum_ == 1) {
+             out << '-' << other.num_;
+         }
+         else {
+            // other.FractionReduce();
+             out << '-' << other.num_ << "/" << other.denum_;
+         }
      }
      return out;
  }
