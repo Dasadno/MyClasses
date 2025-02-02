@@ -1,1 +1,1 @@
-## Just a project with classes realisation 
+## Just a project with realisation of classes
