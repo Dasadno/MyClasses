@@ -25,11 +25,12 @@ int main() {
 	Rat2.setDenum(5);
 	Rat2.setNum(27);
 	Rat2.setsign(true);
-
-	std::cout << "Integer1: -> " << num1 << "\n";
-	std::cout << "Integer2: -> " << num2 << "\n";
-	std::cout << "Fraction1: -> " << Rat1 << "\n";
-	std::cout << "Fraction2: -> " << Rat2 << "\n";
+	
+	std::cout << "-Integer1: -> " << -num1 << "\n";
+	std::cout << " Integer1: -> " << num1 << "\n";
+	std::cout << " Integer2: -> " << num2 << "\n";
+	std::cout << " Fraction1: -> " << Rat1 << "\n";
+	std::cout << " Fraction2: -> " << Rat2 << "\n";
 
 
 	return 0;

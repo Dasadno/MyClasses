@@ -31,17 +31,17 @@ public:
 	//Перегрузки операторов
 
 	//Алгебраические операторы
-	Integer operator + (const Integer& counter)const;
+	Integer& operator + (const Integer& counter)const;
 	//Унарный +
-	Integer operator + (int);
+	Integer operator + ();
 
 	Integer operator * (const Integer& counter)const;
 
 	Integer operator / (const Integer& counter)const;
 
-	Integer operator - (const Integer& counter)const;
+	Integer& operator - (const Integer& counter)const;
 	//Унарный -
-	Integer operator - (int);
+	Integer operator - ();
 
 	Integer operator % (const Integer& counter)const;
 

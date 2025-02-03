@@ -54,17 +54,28 @@ void Fraction::setsign(bool sign)
 {
     sign_ = sign;
 }
+//Методы проверки состояния
+bool Fraction::IsProper(Integer num_, Integer denum_) {
+    if (denum_ == Integer(1))
+    {
+        return true;
+    }
+    else {
+
+    }
+}
+
 
 //Сокращает дробь
-//void Fraction::FractionReduce()
-//{
-//    for (Integer k = 2; k <= num_ && k <= denum_; ++k) {
-//        while (num_ % k == 0 && denum_ % k == 0) {
-//            num_ /= k;
-//            denum_ /= k;
-//        }
-//    }
-//}
+void Fraction::FractionReduce(Integer num_, Integer denum_)
+{
+    for (Integer k = 2; k <= num_ && k <= denum_; ++k) {
+        while (num_ % k == 0 && denum_ % k == 0) {
+            num_ /= k;
+            denum_ /= k;
+        }
+    }
+}
 
 
 Fraction Fraction::operator +(const Fraction& other) const {

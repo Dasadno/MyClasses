@@ -84,7 +84,7 @@
 	//Алгебраические операторы
 
 	//Оператор сложения
-	Integer Integer::operator + (const Integer& other) const
+	Integer& Integer::operator + (const Integer& other) const
 	{
 		Integer result;
 		if (sign_ == other.sign_) 
@@ -111,7 +111,7 @@
 		
 	}
 	//Унарный +
-	Integer Integer::operator + (int) {
+	Integer Integer::operator + () {
 		return value_;
 	}
 	//Оператор умножения
@@ -147,7 +147,7 @@
 		return result;
 	}
 	//Оператор вычитания
-	Integer Integer::operator - (const Integer& other) const
+	Integer& Integer::operator - (const Integer& other) const
 	{
 		Integer result;
 		if (sign_ == other.sign_ && sign_ == true && value_ > other.value_)
@@ -186,17 +186,18 @@
 		return result;
 	}
 	//Унарный -
-	Integer Integer::operator - (int)
+	Integer Integer::operator - ()
 	{
+		Integer copy{ *this };
 		if (sign_ == true)
 		{
-			sign_ = false;
-			return value_;
+			copy.sign_ = false;
+			return copy.value_;
 		}
 		else
 		{
-			sign_ = true;
-			return value_;
+			copy.sign_ = true;
+			return copy.value_;
 		}
 	}
 

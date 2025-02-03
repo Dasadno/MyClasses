@@ -21,13 +21,16 @@ class Fraction
 
         bool getSign();
 
-       // void FractionReduce();
+        void FractionReduce(Integer num_, Integer denum_);
 
         void setNum(Integer num);
 
         void setDenum(Integer num);
 
         void setsign(bool sign);
+        // Методы проверки состояния 
+
+        bool IsProper(Integer num_, Integer denum_);
 
         Fraction operator +(const Fraction& other) const;
       
