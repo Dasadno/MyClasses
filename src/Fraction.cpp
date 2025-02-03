@@ -3,10 +3,20 @@
 
 Fraction::Fraction(): Fraction(false, Integer(1)) { }
 Fraction::Fraction(bool sign, Integer num) :sign_(sign_), num_(num_) { }
-Fraction::Fraction(int number){
-    sign_ = true;
-    this->num_ = number;
-    this->denum_ = Integer(1);
+Fraction::Fraction(Integer number){
+    if (number < 0)
+    {
+        sign_ = false;
+        this->num_ = number;
+        this->denum_ = Integer(1);
+    }
+    else
+    {
+        sign_ = true;
+        this->num_ = number;
+        this->denum_ = static_cast<Integer>(1);
+    }
+    
     
    
 }

@@ -32,12 +32,16 @@ public:
 
 	//Алгебраические операторы
 	Integer operator + (const Integer& counter)const;
+	//Унарный +
+	Integer operator + (int);
 
 	Integer operator * (const Integer& counter)const;
 
 	Integer operator / (const Integer& counter)const;
 
 	Integer operator - (const Integer& counter)const;
+	//Унарный -
+	Integer operator - (int);
 
 	Integer operator % (const Integer& counter)const;
 

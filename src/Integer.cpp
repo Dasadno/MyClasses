@@ -6,11 +6,11 @@
 	Integer::Integer(int number) {
 		if (number < 0)
 		{
-			sign_ = true;
+			sign_ = false;
 			value_ = abs(number);
 		}
 		else {
-			sign_ = false;
+			sign_ = true;
 			value_ = static_cast<unsigned>(number);
 		}
 	}
@@ -110,6 +110,10 @@
 		return result;
 		
 	}
+	//”нарный +
+	Integer Integer::operator + (int) {
+		return value_;
+	}
 	//ќператор умножени€
 	Integer Integer::operator * (const Integer& other) const
 	{
@@ -180,6 +184,20 @@
 			result.value_ = other.value_ - value_;
 		}
 		return result;
+	}
+	//”нарный -
+	Integer Integer::operator - (int)
+	{
+		if (sign_ == true)
+		{
+			sign_ = false;
+			return value_;
+		}
+		else
+		{
+			sign_ = true;
+			return value_;
+		}
 	}
 
 	Integer Integer::operator % (const Integer& counter) const

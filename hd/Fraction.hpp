@@ -11,7 +11,7 @@ class Fraction
     public:
         Fraction();
         Fraction(bool sign, Integer num);
-        Fraction(int number);
+        Fraction(Integer number);
    
         void flip();
 
