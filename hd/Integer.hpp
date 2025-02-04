@@ -70,9 +70,9 @@ public:
 	Integer operator-- (int);
 
 	// операторы присвоения
-	Integer& operator += (const Integer& counter);
+	Integer& operator += (Integer counter);
 
-	Integer& operator -= (const Integer& counter);
+	Integer& operator -= (Integer counter);
 
 	Integer& operator *= (const Integer& counter);
 

@@ -26,10 +26,9 @@ int main() {
 	Rat2.setNum(27);
 	Rat2.setsign(true);
 	
-	std::cout << Rat1 << "\n";
-	std::cout << Rat2 << "\n";
+	std::cout << num1 + num2;
 
-	std::cout << Rat2.isPositive();
+	
 
 
 	return 0;

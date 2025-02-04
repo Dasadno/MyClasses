@@ -279,10 +279,10 @@
 	{
 		Integer copy{ *this };
 		if (sign_ == true) {
-			copy += 1;
+			copy += static_cast<Integer>(1);
 		}
 		else {
-			copy -= 1;
+			copy -= static_cast<Integer>(1);
 		}
 		return copy;
 	}
@@ -291,10 +291,10 @@
 	{
 		Integer copy{ *this };
 		if (sign_ == true) {
-			copy -= 1;
+			copy -= static_cast<Integer>(1);
 		}
 		else {
-			copy += 1;
+			copy += static_cast<Integer>(1);
 		}
 		return copy;
 	}
@@ -325,34 +325,80 @@
 		return copy;
 	}
 	// операторы присваивания
-	Integer& Integer::operator += (const Integer& other)
+	Integer& Integer::operator += (Integer other)
 	{
-		if (sign_ == other.sign_)
+		Integer res;
+		res = !(value_ -= other.value_);
+		return res;
+	}
+
+	Integer& Integer::operator -= (Integer other)
+	{
+		Integer res;
+		if (sign_ == true && other.sign_ == false)
 		{
-			value_ += other.value_;
+			if (value_ >= other.value_)
+			{
+				res = value_ -= other.value_;
+			}
+			else
+			{
+				res = other.value_ -= value_;
+			}
 		}
-		else if (sign_ == true && other.value_ == false) {
-
+		else if (sign_ == false && other.sign_ == true)
+		{
+			if (value_ >= other.value_)
+			{
+				res = value_ += other.value_;
+			}
+			else
+			{
+				res = other.value_ -= value_;
+			}
 		}
-		value_ += other.value_;
-		return *this;
+		else if (sign_ == true && sign_ == true)
+		{
+			if (value_ >= other.value_)
+			{
+				res = value_ -= other.value_;
+			}
+			else
+			{
+				res = other.value_ - value_;
+			}
+		}
+		return res;
 	}
 
-	Integer& Integer::operator -= (const Integer& counter)
+	Integer& Integer::operator *= (const Integer& other)
 	{
-		value_ -= counter.value_;
+		if (sign_ != other.sign_)
+		{
+			value_ *= other.value_;
+			sign_ = false;
+		}
+		else
+		{
+		value_ *= other.value_;
+		}
+
 		return *this;
+		
 	}
 
-	Integer& Integer::operator *= (const Integer& counter)
+	Integer& Integer::operator /= (const Integer& other)
 	{
-		value_ *= counter.value_;
-		return *this;
-	}
+		if (sign_ == true && other.sign_ == true || sign_ == false && other.sign_ == true)
+		{
+			value_ /= other.value_;
+		}
+		else if (sign_ == true && other.sign_ == false)
+		{
+			sign_ = false;
+			value_ /= other.value_;
+		}
 
-	Integer& Integer::operator /= (const Integer& counter)
-	{
-		value_ /= counter.value_;
 		return *this;
 	}
 

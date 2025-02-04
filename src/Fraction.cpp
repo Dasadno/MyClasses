@@ -8,7 +8,7 @@ Fraction::Fraction(Integer number){
     {
         sign_ = false;
         this->num_ = number;
-        this->denum_ = Integer(1);
+        this->denum_ = static_cast<Integer>(1);
     }
     else
     {
@@ -83,10 +83,10 @@ bool Fraction::isNegative() {
 //Сокращает дробь
 void Fraction::FractionReduce()
 {
-    for (Integer k = 2; k <= this->num_ && k <= denum_; ++k) {
-        while (this->num_ % k == 0 && denum_ % k == 0) {
-            num_ /= k;
-            denum_ /= k;
+    for (Integer k = 2; k <= this->num_ && k <= this->denum_; ++k) {
+        while (this->num_ % k == 0 && this->denum_ % k == 0) {
+            this->num_ /= k;
+            this->denum_ /= k;
         }
     }
 }
@@ -96,25 +96,40 @@ Fraction Fraction::operator +(const Fraction& other) const {
     Integer num1;
     Integer num2;
     Fraction result;
-    if (sign_ == other.sign_)
+    if (sign_ == true && other.sign_ == true)
     {
-        Integer num1 = num_ * other.denum_ + denum_ * other.num_;
-        Integer num2 = denum_ * other.denum_;
+        num1 = num_ * other.denum_ + other.num_ * denum_;
+        num2 = denum_ * other.denum_;
+        result.sign_ == true;
     }
     else if (sign_ == false && other.sign_ == true) {
-        Integer num1 = denum_ * other.num_ - num_ * other.denum_;
-        Integer num2 = denum_ * other.denum_;
+       
+       num1 = denum_ * other.num_ - num_ * other.denum_;
+       num2 = denum_ * other.denum_;
     }
     else {
-        Integer num1 = num_ * other.denum_ - denum_ * other.num_;
-        Integer num2 = denum_ * other.denum_;
+        num1 = num_ * other.denum_ - denum_ * other.num_;
+        num2 = denum_ * other.denum_;
     }
     result.num_ = num1;
     result.denum_ = num2;
     
     return result;
 }
+/*
+Fraction Fraction::operator *(const Fraction& other) const {
+    Fraction result;
+    if (sign_ == other.sign_)
+    {
+        Integer num1 = 
+        Integer num2 =
+    }
+    else
+    {
 
+    }
+}
+*/
 
  Fraction Fraction::operator -(const Fraction& other) const {
      Integer num1;
@@ -173,7 +188,7 @@ std::ostream& operator<<(std::ostream& out, Fraction other)
                  out << other.num_;
              }
              else {
-                 other.FractionReduce(other.num_, other.denum_);
+                 other.FractionReduce();
                  out << other.num_ << "/" << other.denum_;
              }
      }

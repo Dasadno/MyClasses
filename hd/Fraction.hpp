@@ -40,6 +40,8 @@ class Fraction
       
         Fraction operator -(const Fraction& other) const;
 
+        Fraction operator *(const Fraction& other) const;
+
         friend std::ostream& operator<<(std::ostream& out, Fraction num);
 
         bool operator<=(const Fraction& other);
