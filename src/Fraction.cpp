@@ -37,7 +37,7 @@ Integer Fraction::getDenum()
 {
     return denum_;
 }
-bool Fraction::getSign()
+bool Fraction::getSign() 
 {
     return sign_;
 }
