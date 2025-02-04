@@ -22,7 +22,7 @@ int main() {
 	Rat1.setsign(true);
 
 	Fraction Rat2;
-	Rat2.setDenum(8);
+	Rat2.setDenum(9);
 	Rat2.setNum(16);
 	Rat2.setsign(true);
 	
