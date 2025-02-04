@@ -70,6 +70,20 @@ bool Fraction::IsProper() {
     }
     return false;
 }
+bool Fraction::IsImproper() {
+    if (denum_ == Integer(1))
+    {
+        return false;
+    }
+    else {
+        FractionReduce();
+        if (denum_ == 1)
+        {
+            return false;
+        }
+    }
+    return true;
+}
 
 
 bool Fraction::isPositive() {

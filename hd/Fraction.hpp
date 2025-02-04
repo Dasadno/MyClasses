@@ -32,6 +32,8 @@ class Fraction
         
         bool IsProper();
 
+        bool IsImproper();
+
         bool isPositive();
         
         bool isNegative();
