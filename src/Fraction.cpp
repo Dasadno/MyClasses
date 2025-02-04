@@ -27,7 +27,6 @@ void Fraction::flip()
     tmp = denum_;
     denum_ = num_;
     num_ = tmp;
-
 }
 //Геттеры
 Integer Fraction::getNum() {
@@ -40,6 +39,14 @@ Integer Fraction::getDenum()
 bool Fraction::getSign() 
 {
     return sign_;
+}
+Fraction Fraction::GetFlipped()
+{
+    Integer tmp;
+    tmp = denum_;
+    denum_ = num_;
+    num_ = tmp;
+    return *this;
 }
 //Сеттеры
 void Fraction::setNum(Integer num)
@@ -55,6 +62,13 @@ void Fraction::setsign(bool sign)
     sign_ = sign;
 }
 //Методы проверки состояния
+bool Fraction::IsSame(const Fraction other) {
+    if (sign_ == other.sign_ && num_ == other.num_ && denum_ == other.denum_ && units_ == other.units_)
+    {
+        return true;
+    }
+    return false;
+}
 
 bool Fraction::IsProper() {
     if (denum_ == Integer(1))
@@ -86,11 +100,11 @@ bool Fraction::IsImproper() {
 }
 
 
-bool Fraction::isPositive() {
+bool Fraction::IsPositive() {
     return sign_ == true ? true : false;
 }
 
-bool Fraction::isNegative() {
+bool Fraction::IsNegative() {
     return sign_ == false ? true : false;
 }
 
