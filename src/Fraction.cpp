@@ -55,22 +55,36 @@ void Fraction::setsign(bool sign)
     sign_ = sign;
 }
 //Методы проверки состояния
-bool Fraction::IsProper(Integer num_, Integer denum_) {
+
+bool Fraction::IsProper() {
     if (denum_ == Integer(1))
     {
         return true;
     }
     else {
-
+        FractionReduce();
+        if (denum_ == 1)
+        {
+            return true;
+        }
     }
+    return false;
 }
 
 
+bool Fraction::isPositive() {
+    return sign_ == true ? true : false;
+}
+
+bool Fraction::isNegative() {
+    return sign_ == false ? true : false;
+}
+
 //Сокращает дробь
-void Fraction::FractionReduce(Integer num_, Integer denum_)
+void Fraction::FractionReduce()
 {
-    for (Integer k = 2; k <= num_ && k <= denum_; ++k) {
-        while (num_ % k == 0 && denum_ % k == 0) {
+    for (Integer k = 2; k <= this->num_ && k <= denum_; ++k) {
+        while (this->num_ % k == 0 && denum_ % k == 0) {
             num_ /= k;
             denum_ /= k;
         }
@@ -159,7 +173,7 @@ std::ostream& operator<<(std::ostream& out, Fraction other)
                  out << other.num_;
              }
              else {
-                 //other.FractionReduce();
+                 other.FractionReduce(other.num_, other.denum_);
                  out << other.num_ << "/" << other.denum_;
              }
      }
@@ -169,7 +183,7 @@ std::ostream& operator<<(std::ostream& out, Fraction other)
              out << '-' << other.num_;
          }
          else {
-            // other.FractionReduce();
+            other.FractionReduce();
              out << '-' << other.num_ << "/" << other.denum_;
          }
      }

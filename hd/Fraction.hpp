@@ -21,7 +21,7 @@ class Fraction
 
         bool getSign();
 
-        void FractionReduce(Integer num_, Integer denum_);
+        void FractionReduce();
 
         void setNum(Integer num);
 
@@ -29,8 +29,12 @@ class Fraction
 
         void setsign(bool sign);
         // Методы проверки состояния 
+        
+        bool IsProper();
 
-        bool IsProper(Integer num_, Integer denum_);
+        bool isPositive();
+        
+        bool isNegative();
 
         Fraction operator +(const Fraction& other) const;
       

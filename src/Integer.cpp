@@ -112,7 +112,7 @@
 	}
 	//Унарный +
 	Integer Integer::operator + () {
-		return value_;
+		return *this;
 	}
 	//Оператор умножения
 	Integer Integer::operator * (const Integer& other) const
@@ -189,16 +189,9 @@
 	Integer Integer::operator - ()
 	{
 		Integer copy{ *this };
-		if (sign_ == true)
-		{
-			copy.sign_ = false;
-			return copy.value_;
-		}
-		else
-		{
-			copy.sign_ = true;
-			return copy.value_;
-		}
+		
+			copy.sign_ = !copy.sign_;
+			return copy;
 	}
 
 	Integer Integer::operator % (const Integer& counter) const
