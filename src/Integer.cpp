@@ -380,7 +380,7 @@
 		}
 		else
 		{
-		value_ *= other.value_;
+			value_ *= other.value_;
 		}
 
 		return *this;

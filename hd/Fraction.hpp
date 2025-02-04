@@ -21,7 +21,7 @@ class Fraction
 
         bool getSign();
 
-        void FractionReduce();
+        Fraction FractionReduce();
 
         void setNum(Integer num);
 

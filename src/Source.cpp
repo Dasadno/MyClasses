@@ -22,12 +22,12 @@ int main() {
 	Rat1.setsign(true);
 
 	Fraction Rat2;
-	Rat2.setDenum(5);
-	Rat2.setNum(27);
+	Rat2.setDenum(8);
+	Rat2.setNum(16);
 	Rat2.setsign(true);
 	
-	std::cout << num1 + num2;
-
+	std::cout << Rat2 << "\n";
+	std::cout << Rat2.FractionReduce();
 	
 
 

@@ -81,14 +81,23 @@ bool Fraction::isNegative() {
 }
 
 //Сокращает дробь
-void Fraction::FractionReduce()
+Fraction Fraction::FractionReduce()
 {
-    for (Integer k = 2; k <= this->num_ && k <= this->denum_; ++k) {
+    Integer k = 2;
         while (this->num_ % k == 0 && this->denum_ % k == 0) {
-            this->num_ /= k;
-            this->denum_ /= k;
+            if (num_ % k == 0 && denum_ % k == 0)
+            {
+                this->num_ /= k;
+                this->denum_ /= k;
+            }
+            if (num_ == Integer(1) || denum_ == Integer(1))
+            {
+                break;
+            }
+            k++;
         }
-    }
+       
+    return *this;
 }
 
 
@@ -188,7 +197,6 @@ std::ostream& operator<<(std::ostream& out, Fraction other)
                  out << other.num_;
              }
              else {
-                 other.FractionReduce();
                  out << other.num_ << "/" << other.denum_;
              }
      }
@@ -196,10 +204,6 @@ std::ostream& operator<<(std::ostream& out, Fraction other)
      {
          if (other.denum_ == 1) {
              out << '-' << other.num_;
-         }
-         else {
-            other.FractionReduce();
-             out << '-' << other.num_ << "/" << other.denum_;
          }
      }
      return out;
