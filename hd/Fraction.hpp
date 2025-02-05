@@ -23,7 +23,7 @@ class Fraction
 
         Fraction GetFlipped();
 
-        Fraction FractionReduce();
+        static Fraction& FractionReduce(Fraction frac);
 
         void setNum(Integer num);
 
@@ -33,7 +33,7 @@ class Fraction
         // Методы проверки состояния 
         bool IsSame(const Fraction other);
 
-        bool IsFracEqual(const Fraction other);
+        static bool IsFracEqual(const Fraction obj, const Fraction other);
 
         bool IsProper();
 
@@ -49,10 +49,12 @@ class Fraction
 
         Fraction operator *(const Fraction& other) const;
 
-        friend std::ostream& operator<<(std::ostream& out, Fraction num);
 
-        bool operator<=(const Fraction& other);
+        bool operator==(const Fraction& other) const;
+
+        bool operator<=(const Fraction& other) const;
    
+        friend std::ostream& operator<<(std::ostream& out, Fraction num);
     private:
         bool sign_;
         Integer num_;

@@ -204,7 +204,7 @@
 	}
 
 	// Операторы сравнения
-	bool Integer::operator == (const Integer & other) const
+	bool Integer::operator == (const Integer& other) const
 	{
 		if (sign_ == other.sign_)
 		{

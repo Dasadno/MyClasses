@@ -70,13 +70,19 @@ bool Fraction::IsSame(const Fraction other) {
     return false;
 }
 
+bool Fraction::IsFracEqual(const Fraction obj, const Fraction other) {
+    FractionReduce(obj);
+    FractionReduce(other);
+    return obj == other ? true : false;
+}
+
 bool Fraction::IsProper() {
     if (denum_ == Integer(1))
     {
         return true;
     }
     else {
-        FractionReduce();
+        FractionReduce(*this);
         if (denum_ == 1)
         {
             return true;
@@ -90,7 +96,7 @@ bool Fraction::IsImproper() {
         return false;
     }
     else {
-        FractionReduce();
+        FractionReduce(*this);
         if (denum_ == 1)
         {
             return false;
@@ -109,23 +115,23 @@ bool Fraction::IsNegative() {
 }
 
 //Сокращает дробь
-Fraction Fraction::FractionReduce()
+Fraction& Fraction::FractionReduce(Fraction frac)
 {
     Integer k = 2;
-        while (this->num_ % k == 0 && this->denum_ % k == 0) {
-            if (num_ % k == 0 && denum_ % k == 0)
+        while (frac.num_ % k == 0 && frac.denum_ % k == 0) {
+            if (frac.num_ % k == 0 && frac.denum_ % k == 0)
             {
-                this->num_ /= k;
-                this->denum_ /= k;
+                frac.num_ /= k;
+                frac.denum_ /= k;
             }
-            if (num_ == Integer(1) || denum_ == Integer(1))
+            if (frac.num_== Integer(1) || frac.denum_ == Integer(1))
             {
                 break;
             }
             k++;
         }
        
-    return *this;
+    return frac;
 }
 
 
@@ -199,7 +205,16 @@ Fraction Fraction::operator *(const Fraction& other) const {
      return result;
  }
 
- bool Fraction::operator<=(const Fraction& other) {
+ bool Fraction::operator==(const Fraction& other) const{
+     
+         if (num_ == other.num_ && denum_ == other.denum_ && units_ == other.units_ && sign_ == other.sign_)
+         {
+             return true;
+         }
+     return false;
+ }
+
+ bool Fraction::operator<=(const Fraction& other) const{
      if (sign_ == other.sign_)
      {
          Integer SideNum = denum_ * other.num_;
@@ -232,6 +247,9 @@ std::ostream& operator<<(std::ostream& out, Fraction other)
      {
          if (other.denum_ == 1) {
              out << '-' << other.num_;
+         }
+         else {
+             out << '-' << other.num_ << "/" << other.denum_;
          }
      }
      return out;

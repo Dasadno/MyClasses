@@ -17,17 +17,19 @@ int main() {
 	num2.setSign(true);
 	
 	Fraction Rat1;
-	Rat1.setDenum(1);
-	Rat1.setNum(15);
+	Rat1.setDenum(4);
+	Rat1.setNum(8);
 	Rat1.setsign(true);
 
 	Fraction Rat2;
-	Rat2.setDenum(9);
-	Rat2.setNum(16);
+	Rat2.setDenum(16);
+	Rat2.setNum(32);
 	Rat2.setsign(true);
 	
+	std::cout << Fraction::FractionReduce(Rat1) << "\n";
+	std::cout << Fraction::FractionReduce(Rat2) << "\n";
 	std::cout << Rat2 << "\n";
-	std::cout << Rat2.FractionReduce();
+	std::cout << Fraction::IsFracEqual(Rat1, Rat2);
 	
 
 
