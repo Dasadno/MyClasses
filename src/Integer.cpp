@@ -133,6 +133,10 @@
 	//Оператор деления
 	Integer Integer::operator / (const Integer& other) const
 	{
+		if (other.value_ == 0)
+		{
+			std::cerr << "Invalid input";
+		}
 		Integer result;
 		if (sign_ == other.sign_)
 		{
@@ -389,6 +393,10 @@
 
 	Integer& Integer::operator /= (const Integer& other)
 	{
+		if (other.value_ == 0)
+		{
+			std::cerr << "Invalid input";
+		}
 		if (sign_ == true && other.sign_ == true || sign_ == false && other.sign_ == true)
 		{
 			value_ /= other.value_;

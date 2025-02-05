@@ -33,6 +33,8 @@ class Fraction
         // Методы проверки состояния 
         bool IsSame(const Fraction other);
 
+        bool IsFracEqual(const Fraction other);
+
         bool IsProper();
 
         bool IsImproper();
