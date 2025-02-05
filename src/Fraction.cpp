@@ -191,6 +191,7 @@ Fraction Fraction::operator *(const Fraction& other) const {
     }
 }
 */
+// оператор вычитания
 
  Fraction Fraction::operator -(const Fraction& other) const {
      Integer num1;
