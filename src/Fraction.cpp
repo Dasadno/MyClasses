@@ -16,9 +16,7 @@ Fraction::Fraction(Integer number){
         this->num_ = number;
         this->denum_ = static_cast<Integer>(1);
     }
-    
-    
-   
+    this->units_ = static_cast<Integer>(0);  
 }
 
 void Fraction::flip()
@@ -36,10 +34,16 @@ Integer Fraction::getDenum()
 {
     return denum_;
 }
+
+Integer Fraction::getUnits() {
+    return units_;
+}
+
 bool Fraction::getSign() 
 {
     return sign_;
 }
+
 Fraction Fraction::GetFlipped()
 {
     Integer tmp;
@@ -57,10 +61,15 @@ void Fraction::setDenum(Integer num)
 {
     denum_ = num;
 }
-void Fraction::setsign(bool sign)
+void Fraction::setSign(bool sign)
 {
     sign_ = sign;
 }
+void Fraction::setUnits(Integer num)
+{
+    units_ = num;
+}
+
 //Методы проверки состояния
 bool Fraction::IsSame(const Fraction other) {
     if (sign_ == other.sign_ && num_ == other.num_ && denum_ == other.denum_ && units_ == other.units_)
@@ -115,8 +124,8 @@ bool Fraction::IsNegative() {
 }
 
 //Сокращает дробь
-Fraction& Fraction::FractionReduce(Fraction frac)
-{
+Fraction& Fraction::FractionReduce(Fraction frac) {
+    {
     Integer k = 2;
         while (frac.num_ % k == 0 && frac.denum_ % k == 0) {
             if (frac.num_ % k == 0 && frac.denum_ % k == 0)
@@ -124,13 +133,22 @@ Fraction& Fraction::FractionReduce(Fraction frac)
                 frac.num_ /= k;
                 frac.denum_ /= k;
             }
-            if (frac.num_== Integer(1) || frac.denum_ == Integer(1))
+            if (frac.num_ == Integer(1) || frac.denum_ == Integer(1))
             {
+                while (frac.num_ > frac.denum_) {
+                    frac.num_ - frac.denum_;
+                    frac.units_++;
+                    if (frac.num_ == 0)
+                    {
+                        frac.denum_ - frac.denum_;
+                    }
+                }
+            }
                 break;
             }
+            frac.units_.setSign(frac.sign_);
             k++;
         }
-       
     return frac;
 }
 
@@ -235,20 +253,29 @@ std::ostream& operator<<(std::ostream& out, Fraction other)
      
      if (other.sign_ == true)
      {
-             if (other.denum_ == 1) {
+             if (other.denum_ == 0) {
                  
-                 out << other.num_;
+                 out << other.units_;
              }
-             else {
+             else if (other.units_ > 0 && other.denum_ != 0) {
+                 out << other.units_ << " " << other.num_ << "/" << other.denum_;
+             }
+             else
+             {
                  out << other.num_ << "/" << other.denum_;
              }
      }
      else
      {
-         if (other.denum_ == 1) {
-             out << '-' << other.num_;
+         if (other.denum_ == 0) {
+
+             out << '-' << other.units_;
          }
-         else {
+         else if (other.units_ > 0 && other.denum_ != 0) {
+             out << '-' << other.units_ << " " << other.num_ << "/" << other.denum_;
+         }
+         else
+         {
              out << '-' << other.num_ << "/" << other.denum_;
          }
      }

@@ -198,9 +198,17 @@
 			return copy;
 	}
 
-	Integer Integer::operator % (const Integer& counter) const
+	Integer Integer::operator % (const Integer& other) const
 	{
-		return static_cast<Integer>( value_ % counter.value_ );
+		if (sign_ == other.sign_)
+		{
+			return static_cast<Integer>(value_ % other.value_);
+		}
+		else
+		{
+			return static_cast<Integer>(!(value_ % other.value_));
+		}
+		
 	}
 
 	// Операторы сравнения
@@ -361,7 +369,7 @@
 				res = other.value_ -= value_;
 			}
 		}
-		else if (sign_ == true && sign_ == true)
+		else if (sign_ == true && other.sign_ == true)
 		{
 			if (value_ >= other.value_)
 			{

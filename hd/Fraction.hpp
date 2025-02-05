@@ -19,6 +19,8 @@ class Fraction
         
         Integer getDenum();
 
+        Integer getUnits();
+
         bool getSign();
 
         Fraction GetFlipped();
@@ -29,7 +31,9 @@ class Fraction
 
         void setDenum(Integer num);
 
-        void setsign(bool sign);
+        void setSign(bool sign);
+
+        void setUnits(Integer num);
         // Методы проверки состояния 
         bool IsSame(const Fraction other);
 
