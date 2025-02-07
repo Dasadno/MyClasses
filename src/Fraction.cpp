@@ -143,10 +143,8 @@ Fraction& Fraction::FractionReduce(Fraction frac) {
                 frac.denum_ = 0;
                 frac.num_ = 0;
                 frac.units_++;
-                break;
             }
         }
-
     }
             frac.units_.setSign(frac.sign_);
             k++;

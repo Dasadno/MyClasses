@@ -19,10 +19,11 @@ public:
 	unsigned getValue()const;
 	// Функции проверки состояния
 	//bool isPrimeNum();
-	bool isOdd(Integer val)const;
-	bool isEven(Integer val)const;
-	bool isPositive(Integer num)const;
-	bool isNegative(Integer num)const;
+	
+	bool isOdd()const;
+	bool isEven()const;
+	bool isPositive()const;
+	bool isNegative()const;
 	int Nod(Integer other)const;
 	bool isCoprime(Integer other)const;
 	int Nok(Integer other)const;

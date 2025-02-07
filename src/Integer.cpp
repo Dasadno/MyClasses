@@ -37,7 +37,7 @@
 		{
 			return false;
 		}
-		for (int i = 2; i * i <= value_; i++)
+		for (int i = 2; i <= value_ / 2; i++)
 		{
 			if (value_ % i == 0)
 			{
@@ -46,19 +46,19 @@
 		}
 		return true;
 	}
-	bool Integer::isOdd(Integer val)const {
-		return val % 2 != 0;
+	bool Integer::isOdd()const {
+		return value_ % 2 != 0;
 	}
 
-	bool Integer::isEven(Integer val)const {
-		return val % 2 == 0;
+	bool Integer::isEven()const {
+		return value_ % 2 == 0;
 	}
 
-	bool Integer::isPositive(Integer num)const {
+	bool Integer::isPositive()const {
 		return sign_;
 	}
 
-	bool Integer::isNegative(Integer num) const{
+	bool Integer::isNegative() const{
 		return !sign_;
 	}
 
@@ -136,6 +136,7 @@
 		if (other.value_ == 0)
 		{
 			std::cerr << "Invalid input";
+			exit(-1);
 		}
 		Integer result;
 		if (sign_ == other.sign_)
@@ -153,41 +154,9 @@
 	//Оператор вычитания
 	Integer& Integer::operator - (const Integer& other) const
 	{
-		Integer result;
-		if (sign_ == other.sign_ && sign_ == true && value_ > other.value_)
-		{
-			result.sign_ = sign_;
-			result.value_ = value_ - other.value_;
-		}
-		else if (sign_ == other.sign_ && sign_ == true && value_ < other.value_) {
-			result.sign_ = !sign_;
-			result.value_ = other.value_ - value_;
-		}
-		else if (sign_ == other.sign_ && sign_ == false && value_ > other.value_) {
-			result.sign_ = sign_;
-			result.value_ = other.value_ + value_;
-		}
-		else if (sign_ == other.sign_&& sign_ == false && value_ < other.value_) {
-			result.sign_ = sign_;
-			result.value_ = other.value_ + value_;
-		}
-		else if (sign_ != other.sign_ && sign_ == true && value_ > other.value_) {
-			result.sign_ = sign_;
-			result.value_ = value_ - other.value_;
-		}
-		else if (sign_ != other.sign_ && sign_ == false && value_ > other.value_) {
-			result.sign_ = sign_;
-			result.value_ = value_ - other.value_;
-		}
-		else if (sign_ != other.sign_ && sign_ == true && value_ > other.value_) {
-			result.sign_ = sign_;
-			result.value_ = value_ - other.value_;
-		}
-		else if (sign_ != other.sign_ && sign_ == false && value_ < other.value_) {
-			result.sign_ = other.sign_;
-			result.value_ = other.value_ - value_;
-		}
-		return result;
+		Integer res;
+		res = -(value_ + other.value_);
+		return res;
 	}
 	//Унарный -
 	Integer Integer::operator - ()
@@ -206,7 +175,7 @@
 		}
 		else
 		{
-			return static_cast<Integer>(!(value_ % other.value_));
+			return static_cast<Integer>(-(value_ % other.value_));
 		}
 		
 	}
@@ -286,7 +255,7 @@
 		}
 	}
 
-	//Декремент, инкремент (Постфиксные)
+	//Декремент, инкремент (Префиксные)
 	Integer& Integer::operator++ ()
 	{
 		Integer copy{ *this };
@@ -310,7 +279,7 @@
 		}
 		return copy;
 	}
-	//Декремент, инкремент (Префиксные)
+	//Декремент, инкремент (Постфиксные)
 	Integer Integer::operator++ (int)
 	{
 		Integer copy{ *this };
@@ -339,83 +308,23 @@
 	// операторы присваивания
 	Integer& Integer::operator += (Integer other)
 	{
-		Integer res;
-		res = !(value_ -= other.value_);
-		return res;
+		return *this = *this + other;
 	}
 
 	Integer& Integer::operator -= (Integer other)
 	{
-		Integer res;
-		if (sign_ == true && other.sign_ == false)
-		{
-			if (value_ >= other.value_)
-			{
-				res = value_ -= other.value_;
-			}
-			else
-			{
-				res = other.value_ -= value_;
-			}
-		}
-		else if (sign_ == false && other.sign_ == true)
-		{
-			if (value_ >= other.value_)
-			{
-				res = value_ += other.value_;
-			}
-			else
-			{
-				res = other.value_ -= value_;
-			}
-		}
-		else if (sign_ == true && other.sign_ == true)
-		{
-			if (value_ >= other.value_)
-			{
-				res = value_ -= other.value_;
-			}
-			else
-			{
-				res = other.value_ - value_;
-			}
-		}
-		return res;
+		return *this = *this - other;
 	}
 
 	Integer& Integer::operator *= (const Integer& other)
 	{
-		if (sign_ != other.sign_)
-		{
-			value_ *= other.value_;
-			sign_ = false;
-		}
-		else
-		{
-			value_ *= other.value_;
-		}
-
-		return *this;
+		return *this = *this * other;
 		
 	}
 
 	Integer& Integer::operator /= (const Integer& other)
 	{
-		if (other.value_ == 0)
-		{
-			std::cerr << "Invalid input";
-		}
-		if (sign_ == true && other.sign_ == true || sign_ == false && other.sign_ == true)
-		{
-			value_ /= other.value_;
-		}
-		else if (sign_ == true && other.sign_ == false)
-		{
-			sign_ = false;
-			value_ /= other.value_;
-		}
-
-		return *this;
+		return *this = *this / other;
 	}
 
 	std::ostream& operator<<(std::ostream& out, const Integer& other) {
