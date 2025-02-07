@@ -46,20 +46,20 @@
 		}
 		return true;
 	}
-	bool Integer::isOdd()const {
+	bool Integer::isOdd() {
 		return value_ % 2 != 0;
 	}
 
-	bool Integer::isEven()const {
+	bool Integer::isEven() {
 		return value_ % 2 == 0;
 	}
 
 	bool Integer::isPositive()const {
-		return sign_;
+		return getSign;
 	}
 
 	bool Integer::isNegative() const{
-		return !sign_;
+		return !getSign();
 	}
 
 	bool Integer::isCoprime(Integer other)const
@@ -181,29 +181,29 @@
 	// Операторы сравнения
 	bool operator == (const Integer& num, const Integer& other)
 	{
-		if (sign_ == other.sign_)
+		if (num.getSign() == other.getSign())
 		{
-			return value_ == other.value_;
+			return num.getValue() == other.getValue();
 		}
 		return false;
 	}
 
 	bool operator != (const Integer& num, const Integer& other)
 	{
-		if (sign_ == other.sign_)
+		if (num.getSign() == other.getSign())
 		{
-			return value_ != other.value_;
+			return num.getValue() != other.getValue();
 		}
 		return true;
 	}
 
 	bool operator > (const Integer& num, const Integer& other)
 	{
-		if (sign_ == other.sign_)
+		if (num.getSign() == other.getSign())
 		{
-			return value_ > other.value_;
+			return num.getValue() > other.getValue();
 		}
-		else if (sign_ == true && other.sign_ == false) {
+		else if (num.getSign() == true && other.getSign() == false) {
 			return true;
 		}
 		else {
@@ -213,11 +213,11 @@
 
 	bool operator < (const Integer& num, const Integer& other)
 	{
-		if (sign_ == other.sign_)
+		if (num.getSign() == other.getSign())
 		{
-			return value_ < other.value_;
+			return num.getValue() < other.getValue();
 		}
-		else if (sign_ == true && other.sign_ == false) {
+		else if (num.getSign() == true && other.getSign() == false) {
 			return false;
 		}
 		else {
@@ -227,11 +227,11 @@
 
 	bool operator <= (const Integer& num, const Integer& other)
 	{
-		if (sign_ == other.sign_)
+		if (num.getSign() == other.getSign())
 		{
-			return value_ <= other.value_;
+			return num.getValue() <= other.getValue();
 		}
-		else if (sign_ == true && other.sign_ == false) {
+		else if (num.getSign() == true && other.getSign() == false) {
 			return false;
 		}
 		else {
@@ -241,11 +241,11 @@
 
 	bool operator>=(const Integer& num, const Integer& other)
 	{
-		if (sign_ == other.sign_)
+		if (num.getSign() == other.getSign())
 		{
-			return value_ >= other.value_;
+			return num.getValue() >= other.getValue();
 		}
-		else if (sign_ == true && other.sign_ == false) {
+		else if (num.getSign() == true && other.getSign() == false) {
 			return true;
 		}
 		else {

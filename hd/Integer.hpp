@@ -20,8 +20,8 @@ public:
 	// Функции проверки состояния
 	//bool isPrimeNum();
 	
-	bool isOdd()const;
-	bool isEven()const;
+	bool isOdd();
+	bool isEven();
 	bool isPositive()const;
 	bool isNegative()const;
 	int Nod(Integer other)const;
