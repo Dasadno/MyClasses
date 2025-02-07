@@ -1,22 +1,19 @@
 #include "..\hd\Fraction.hpp"
 
 
-Fraction::Fraction(): Fraction(false, Integer(1)) { }
-Fraction::Fraction(bool sign, Integer num) :sign_(sign_), num_(num_) { }
+Fraction::Fraction(): Fraction(Integer(1), Integer(1)) { }
+Fraction::Fraction(Integer denum, Integer num) :denum_(denum_), num_(num_) { }
 Fraction::Fraction(Integer number){
     if (number < 0)
     {
-        sign_ = false;
         this->num_ = number;
         this->denum_ = static_cast<Integer>(1);
     }
     else
     {
-        sign_ = true;
         this->num_ = number;
         this->denum_ = static_cast<Integer>(1);
     }
-    this->units_ = static_cast<Integer>(0);  
 }
 
 void Fraction::flip()
@@ -35,13 +32,12 @@ Integer Fraction::getDenum()
     return denum_;
 }
 
-Integer Fraction::getUnits() {
-    return units_;
-}
-
-bool Fraction::getSign() 
-{
-    return sign_;
+bool Fraction::getSign() {
+    if (num_.getSign() != denum_.getSign())
+    {
+        return false;
+    }
+    return true
 }
 
 Fraction Fraction::GetFlipped()
@@ -56,33 +52,22 @@ Fraction Fraction::GetFlipped()
 void Fraction::setNum(Integer num)
 {
     num_ = num;
+    num_.setSign(num > 0 ? true: false);
+   
 }
 void Fraction::setDenum(Integer num)
 {
     denum_ = num;
-}
-void Fraction::setSign(bool sign)
-{
-    sign_ = sign;
-}
-void Fraction::setUnits(Integer num)
-{
-    units_ = num;
+    denum_.setSign(num > 0 ? true : false);
 }
 
 //Методы проверки состояния
-bool Fraction::IsSame(const Fraction other) {
-    if (sign_ == other.sign_ && num_ == other.num_ && denum_ == other.denum_ && units_ == other.units_)
-    {
-        return true;
-    }
-    return false;
+bool Fraction::IsSame(const Fraction* other) const{
+    return this == other;
 }
 
-bool Fraction::IsFracEqual(const Fraction obj, const Fraction other) {
-    FractionReduce(obj);
-    FractionReduce(other);
-    return obj == other ? true : false;
+bool Fraction::IsFracEqual(const Fraction& obj, const Fraction& other) {
+    return FractionReduce(other) == FractionReduce(obj);
 }
 
 bool Fraction::IsProper() {
@@ -116,67 +101,59 @@ bool Fraction::IsImproper() {
 
 
 bool Fraction::IsPositive() {
-    return sign_ == true ? true : false;
+    return num_.getSign() == true && denum_.getSign() == true;
 }
 
 bool Fraction::IsNegative() {
-    return sign_ == false ? true : false;
+    return num_.getSign() == false && denum_.getSign() == false;
 }
 
 //Сокращает дробь
 Fraction& Fraction::FractionReduce(Fraction frac) {
     {
-    Integer k = 2;
-    Integer tmp = 0;
-    while (frac.num_ % k == 0 && frac.denum_ % k == 0) {
-        if (frac.num_ % k == 0 && frac.denum_ % k == 0)
-        {
-            frac.num_ /= k;
-            frac.denum_ /= k;
-        }
-        if (frac.num_ == Integer(1) || frac.denum_ == Integer(1))
-        {
-            frac.num_ -= frac.denum_;
-            frac.units_++;
-            if (frac.num_ == frac.denum_)
+        Integer k = 2;
+        while (frac.num_ % k == 0 && frac.denum_ % k == 0) {
+            if (frac.num_ % k == 0 && frac.denum_ % k == 0)
             {
-                frac.denum_ = 0;
-                frac.num_ = 0;
-                frac.units_++;
+                frac.num_ /= k;
+                frac.denum_ /= k;
             }
-        }
-    }
-            frac.units_.setSign(frac.sign_);
+            if (frac.num_ == Integer(1) || frac.denum_ == Integer(1))
+            {
+                break;
+            }
             k++;
         }
-    return frac;
+
+        return frac;
+    }
 }
 
 
-Fraction Fraction::operator +(const Fraction& other) const {
-    Integer num1;
-    Integer num2;
-    Fraction result;
-    if (sign_ == true && other.sign_ == true)
-    {
-        num1 = num_ * other.denum_ + other.num_ * denum_;
-        num2 = denum_ * other.denum_;
-        result.sign_ == true;
+    Fraction Fraction::operator+(const Fraction & other) const {
+        Integer num1;
+        Integer num2;
+        Fraction result;
+        if (getSign() == true && other.n == true)
+        {
+            num1 = num_ * other.denum_ + other.num_ * denum_;
+            num2 = denum_ * other.denum_;
+            result.sign_ == true;
+        }
+        else if (sign_ == false && other.sign_ == true) {
+
+            num1 = denum_ * other.num_ - num_ * other.denum_;
+            num2 = denum_ * other.denum_;
+        }
+        else {
+            num1 = num_ * other.denum_ - denum_ * other.num_;
+            num2 = denum_ * other.denum_;
+        }
+        result.num_ = num1;
+        result.denum_ = num2;
+
+        return result;
     }
-    else if (sign_ == false && other.sign_ == true) {
-       
-       num1 = denum_ * other.num_ - num_ * other.denum_;
-       num2 = denum_ * other.denum_;
-    }
-    else {
-        num1 = num_ * other.denum_ - denum_ * other.num_;
-        num2 = denum_ * other.denum_;
-    }
-    result.num_ = num1;
-    result.denum_ = num2;
-    
-    return result;
-}
 /*
 Fraction Fraction::operator *(const Fraction& other) const {
     Fraction result;

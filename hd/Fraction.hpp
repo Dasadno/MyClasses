@@ -10,7 +10,7 @@ class Fraction
 { 
     public:
         Fraction();
-        Fraction(bool sign, Integer num);
+        Fraction(Integer denum, Integer num);
         Fraction(Integer number);
    
         void flip();
@@ -19,7 +19,7 @@ class Fraction
         
         Integer getDenum();
 
-        Integer getUnits();
+        
 
         bool getSign();
 
@@ -31,13 +31,10 @@ class Fraction
 
         void setDenum(Integer num);
 
-        void setSign(bool sign);
-
-        void setUnits(Integer num);
         // Методы проверки состояния 
-        bool IsSame(const Fraction other);
+        bool IsSame(const Fraction* other) const;
 
-        static bool IsFracEqual(const Fraction obj, const Fraction other);
+        static bool IsFracEqual(const Fraction& obj, const Fraction& other);
 
         bool IsProper();
 
@@ -47,11 +44,11 @@ class Fraction
         
         bool IsNegative();
 
-        Fraction operator +(const Fraction& other) const;
+        Fraction operator+(const Fraction& other) const;
       
-        Fraction operator -(const Fraction& other) const;
+        Fraction operator-(const Fraction& other) const;
 
-        Fraction operator *(const Fraction& other) const;
+        Fraction operator*(const Fraction& other) const;
 
 
         bool operator==(const Fraction& other) const;
@@ -60,9 +57,7 @@ class Fraction
    
         friend std::ostream& operator<<(std::ostream& out, Fraction num);
     private:
-        bool sign_;
         Integer num_;
         Integer denum_;
-        Integer units_;
 };
  
