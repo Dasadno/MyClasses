@@ -48,17 +48,17 @@ public:
 
 
 	// Операторы сравнения
-	bool operator == (const Integer& other)const;
+	friend bool operator == (const Integer& num, const Integer& other);
 
-	bool operator != (const Integer& other)const;
+	friend bool operator != (const Integer& num, const Integer& other);
 
-	bool operator > (const Integer& other)const;
+	friend bool operator > (const Integer& num, const Integer& other);
 
-	bool operator < (const Integer& other)const;
+	friend bool operator < (const Integer& num, const Integer& other);
 
-	bool operator <= (const Integer& other) const;
+	friend bool operator <= (const Integer& num, const Integer& other);
 
-	bool operator >= (const Integer& other) const;
+	friend bool operator >= (const Integer& num, const Integer& other);
 
 	//Префексный Декремент, Инкремент
 	Integer& operator++ ();

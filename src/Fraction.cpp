@@ -206,7 +206,7 @@ Fraction Fraction::operator *(const Fraction& other) const {
      return result;
  }
 
- bool Fraction::operator==(const Fraction& other) const{
+ bool Fraction::operator==(const Fraction& other){
      
          if (num_ == other.num_ && denum_ == other.denum_ && getSign() == other.getSign())
          {
@@ -215,7 +215,7 @@ Fraction Fraction::operator *(const Fraction& other) const {
      return false;
  }
 
- bool Fraction::operator<=(const Fraction& other) const{
+ bool Fraction::operator<=(const Fraction& other){
      if (getSign() == other.getSign())
      {
          Integer SideNum = denum_ * other.num_;

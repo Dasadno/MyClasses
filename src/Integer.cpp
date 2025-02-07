@@ -176,12 +176,10 @@
 		else
 		{
 			return static_cast<Integer>(-(value_ % other.value_));
-		}
-		
+		}	
 	}
-
 	// Операторы сравнения
-	bool Integer::operator == (const Integer& other) const
+	bool operator == (const Integer& num, const Integer& other)
 	{
 		if (sign_ == other.sign_)
 		{
@@ -190,7 +188,7 @@
 		return false;
 	}
 
-	bool Integer::operator != (const Integer& other) const
+	bool operator != (const Integer& num, const Integer& other)
 	{
 		if (sign_ == other.sign_)
 		{
@@ -199,7 +197,7 @@
 		return true;
 	}
 
-	bool Integer::operator > (const Integer& other) const
+	bool operator > (const Integer& num, const Integer& other)
 	{
 		if (sign_ == other.sign_)
 		{
@@ -213,7 +211,7 @@
 		}
 	}
 
-	bool Integer::operator < (const Integer& other) const
+	bool operator < (const Integer& num, const Integer& other)
 	{
 		if (sign_ == other.sign_)
 		{
@@ -227,7 +225,7 @@
 		}
 	}
 
-	bool Integer::operator <= (const Integer& other) const
+	bool operator <= (const Integer& num, const Integer& other)
 	{
 		if (sign_ == other.sign_)
 		{
@@ -241,7 +239,7 @@
 		}
 	}
 
-	bool Integer::operator >= (const Integer& other) const
+	bool operator>=(const Integer& num, const Integer& other)
 	{
 		if (sign_ == other.sign_)
 		{
@@ -326,6 +324,7 @@
 	{
 		return *this = *this / other;
 	}
+
 
 	std::ostream& operator<<(std::ostream& out, const Integer& other) {
 		if (other.sign_ == true)

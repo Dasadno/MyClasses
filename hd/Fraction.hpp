@@ -51,9 +51,9 @@ class Fraction
         Fraction operator*(const Fraction& other) const;
 
 
-        bool operator==(const Fraction& other) const;
+        friend bool operator==(const Fraction& num, const Fraction& other);
 
-        bool operator<=(const Fraction& other) const;
+        friend bool operator<=(const Fraction& num, const Fraction& other);
    
         friend std::ostream& operator<<(std::ostream& out, Fraction num);
     private:
