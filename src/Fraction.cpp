@@ -206,23 +206,23 @@ Fraction Fraction::operator *(const Fraction& other) const {
      return result;
  }
 
- bool Fraction::operator==(const Fraction& other){
+ bool operator==(const Fraction& num, const Fraction& other){
      
-         if (num_ == other.num_ && denum_ == other.denum_ && getSign() == other.getSign())
+         if (num.num_ == other.num_ && num.denum_ == other.denum_ && num.getSign() == other.getSign())
          {
              return true;
          }
      return false;
  }
 
- bool Fraction::operator<=(const Fraction& other){
-     if (getSign() == other.getSign())
+ bool operator<=(const Fraction& num, const Fraction& other){
+     if (num.getSign() == other.getSign())
      {
-         Integer SideNum = denum_ * other.num_;
-         Integer MainNum = num_ * other.denum_;
+         Integer SideNum = num.denum_ * other.num_;
+         Integer MainNum = num.num_ * other.denum_;
          return MainNum <= SideNum;
      }
-     else if (getSign() == true && other.getSign() == false) {
+     else if (num.getSign() == true && other.getSign() == false) {
          return false;
      }
      else {

@@ -55,7 +55,7 @@
 	}
 
 	bool Integer::isPositive()const {
-		return getSign;
+		return getSign();
 	}
 
 	bool Integer::isNegative() const{
@@ -154,29 +154,48 @@
 	//Оператор вычитания
 	Integer& Integer::operator - (const Integer& other) const
 	{
-		Integer res;
-		res = -(value_ + other.value_);
-		return res;
+		Integer result;
+		if (sign_ == other.sign_)
+		{
+			if (value_ > other.value_)
+			{
+				result.sign_ = sign_;
+				result.value_ = value_ - other.value_;
+			}
+			else
+			{
+				result.sign_ = sign_;
+				result.value_ = other.value_ - value_;
+			}
+		}
+		else {
+			if (value_ > other.value_)
+			{
+				result.sign_ = sign_;
+				result.value_ = value_ + other.value_;
+			}
+			else if (value_ < other.value_) {
+				result.sign_ = other.sign_;
+				result.value_ = other.value_ + value_;
+			}
+			else {
+				result.sign_ = false;
+				result.value_ = true;
+			}
+		}
+		return result;
 	}
 	//Унарный -
 	Integer Integer::operator - ()
 	{
 		Integer copy{ *this };
-		
 			copy.sign_ = !copy.sign_;
 			return copy;
 	}
 
 	Integer Integer::operator % (const Integer& other) const
 	{
-		if (sign_ == other.sign_)
-		{
 			return static_cast<Integer>(value_ % other.value_);
-		}
-		else
-		{
-			return static_cast<Integer>(-(value_ % other.value_));
-		}	
 	}
 	// Операторы сравнения
 	bool operator == (const Integer& num, const Integer& other)
