@@ -29,7 +29,9 @@ int main() {
 	Rat2.setSign(true);
 	
 	std::cout << Fraction::FractionReduce(Rat1) << "\n";
-	std::cout << Fraction::FractionReduce(Rat2) << "\n";
+
+	std::cout << Rat1 << "\n";
+
 	std::cout << Rat2 << "\n";
 	std::cout << Fraction::IsFracEqual(Rat1, Rat2);
 	

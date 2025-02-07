@@ -127,25 +127,27 @@ bool Fraction::IsNegative() {
 Fraction& Fraction::FractionReduce(Fraction frac) {
     {
     Integer k = 2;
-        while (frac.num_ % k == 0 && frac.denum_ % k == 0) {
-            if (frac.num_ % k == 0 && frac.denum_ % k == 0)
+    Integer tmp = 0;
+    while (frac.num_ % k == 0 && frac.denum_ % k == 0) {
+        if (frac.num_ % k == 0 && frac.denum_ % k == 0)
+        {
+            frac.num_ /= k;
+            frac.denum_ /= k;
+        }
+        if (frac.num_ == Integer(1) || frac.denum_ == Integer(1))
+        {
+            frac.num_ -= frac.denum_;
+            frac.units_++;
+            if (frac.num_ == frac.denum_)
             {
-                frac.num_ /= k;
-                frac.denum_ /= k;
-            }
-            if (frac.num_ == Integer(1) || frac.denum_ == Integer(1))
-            {
-                while (frac.num_ > frac.denum_) {
-                    frac.num_ - frac.denum_;
-                    frac.units_++;
-                    if (frac.num_ == 0)
-                    {
-                        frac.denum_ - frac.denum_;
-                    }
-                }
-            }
+                frac.denum_ = 0;
+                frac.num_ = 0;
+                frac.units_++;
                 break;
             }
+        }
+
+    }
             frac.units_.setSign(frac.sign_);
             k++;
         }
