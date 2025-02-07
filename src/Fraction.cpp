@@ -24,20 +24,20 @@ void Fraction::flip()
     num_ = tmp;
 }
 //Геттеры
-Integer Fraction::getNum() {
+Integer Fraction::getNum() const{
     return num_;
 }
-Integer Fraction::getDenum()
+Integer Fraction::getDenum() const
 {
     return denum_;
 }
 
-bool Fraction::getSign() {
+bool Fraction::getSign() const{
     if (num_.getSign() != denum_.getSign())
     {
         return false;
     }
-    return true
+    return true;
 }
 
 Fraction Fraction::GetFlipped()
@@ -61,6 +61,11 @@ void Fraction::setDenum(Integer num)
     denum_.setSign(num > 0 ? true : false);
 }
 
+void Fraction::setSign(bool sign) {
+    num_.setSign(sign);
+    denum_.setSign(sign);
+}
+
 //Методы проверки состояния
 bool Fraction::IsSame(const Fraction* other) const{
     return this == other;
@@ -70,7 +75,7 @@ bool Fraction::IsFracEqual(const Fraction& obj, const Fraction& other) {
     return FractionReduce(other) == FractionReduce(obj);
 }
 
-bool Fraction::IsProper() {
+bool Fraction::IsProper() const{
     if (denum_ == Integer(1))
     {
         return true;
@@ -84,7 +89,7 @@ bool Fraction::IsProper() {
     }
     return false;
 }
-bool Fraction::IsImproper() {
+bool Fraction::IsImproper() const{
     if (denum_ == Integer(1))
     {
         return false;
@@ -100,11 +105,11 @@ bool Fraction::IsImproper() {
 }
 
 
-bool Fraction::IsPositive() {
+bool Fraction::IsPositive() const{
     return num_.getSign() == true && denum_.getSign() == true;
 }
 
-bool Fraction::IsNegative() {
+bool Fraction::IsNegative() const{
     return num_.getSign() == false && denum_.getSign() == false;
 }
 
@@ -130,17 +135,17 @@ Fraction& Fraction::FractionReduce(Fraction frac) {
 }
 
 
-    Fraction Fraction::operator+(const Fraction & other) const {
+    Fraction Fraction::operator+(const Fraction& other) const{
         Integer num1;
         Integer num2;
         Fraction result;
-        if (getSign() == true && other.n == true)
+        if (IsPositive() == true && other.IsPositive() == true)
         {
             num1 = num_ * other.denum_ + other.num_ * denum_;
             num2 = denum_ * other.denum_;
-            result.sign_ == true;
+            result.setSign(true);
         }
-        else if (sign_ == false && other.sign_ == true) {
+        else if (IsPositive() == false && other.IsPositive() == false) {
 
             num1 = denum_ * other.num_ - num_ * other.denum_;
             num2 = denum_ * other.denum_;
@@ -174,7 +179,7 @@ Fraction Fraction::operator *(const Fraction& other) const {
      Integer num1;
      Integer num2;
      Fraction result;
-     if (sign_ == other.sign_)
+     if (getSign() == other.getSign())
      {
          Integer SideNum = denum_ * other.num_;
          Integer MainNum = num_ * other.denum_;
@@ -188,7 +193,7 @@ Fraction Fraction::operator *(const Fraction& other) const {
          
          Integer num2 = denum_ * other.denum_;
      }
-     else if (sign_ == false && other.sign_ == true) {
+     else if (getSign() == false && other.getSign() == true) {
          Integer num1 = denum_ * other.num_ + num_ * other.denum_;
          Integer num2 = denum_ * other.denum_;
      }
@@ -203,7 +208,7 @@ Fraction Fraction::operator *(const Fraction& other) const {
 
  bool Fraction::operator==(const Fraction& other) const{
      
-         if (num_ == other.num_ && denum_ == other.denum_ && units_ == other.units_ && sign_ == other.sign_)
+         if (num_ == other.num_ && denum_ == other.denum_ && getSign() == other.getSign())
          {
              return true;
          }
@@ -211,13 +216,13 @@ Fraction Fraction::operator *(const Fraction& other) const {
  }
 
  bool Fraction::operator<=(const Fraction& other) const{
-     if (sign_ == other.sign_)
+     if (getSign() == other.getSign())
      {
          Integer SideNum = denum_ * other.num_;
          Integer MainNum = num_ * other.denum_;
          return MainNum <= SideNum;
      }
-     else if (sign_ == true && other.sign_ == false) {
+     else if (getSign() == true && other.getSign() == false) {
          return false;
      }
      else {
@@ -226,34 +231,25 @@ Fraction Fraction::operator *(const Fraction& other) const {
  }
 
  // Оператор вывода
-std::ostream& operator<<(std::ostream& out, Fraction other)
+ std::ostream& operator<<(std::ostream& out, Fraction other)
  {
-     
-     if (other.sign_ == true)
+
+     if (other.getSign() == true)
      {
-             if (other.denum_ == 0) {
-                 
-                 out << other.units_;
-             }
-             else if (other.units_ > 0 && other.denum_ != 0) {
-                 out << other.units_ << " " << other.num_ << "/" << other.denum_;
-             }
-             else
-             {
-                 out << other.num_ << "/" << other.denum_;
-             }
+         if (other.denum_ == 1) {
+
+             out << other.num_;
+         }
+         else {
+             out << other.num_ << "/" << other.denum_;
+         }
      }
      else
      {
-         if (other.denum_ == 0) {
-
-             out << '-' << other.units_;
+         if (other.denum_ == 1) {
+             out << '-' << other.num_;
          }
-         else if (other.units_ > 0 && other.denum_ != 0) {
-             out << '-' << other.units_ << " " << other.num_ << "/" << other.denum_;
-         }
-         else
-         {
+         else {
              out << '-' << other.num_ << "/" << other.denum_;
          }
      }

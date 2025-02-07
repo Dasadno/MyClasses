@@ -15,13 +15,11 @@ class Fraction
    
         void flip();
 
-        Integer getNum();
+        Integer getNum() const;
         
-        Integer getDenum();
+        Integer getDenum()const;
 
-        
-
-        bool getSign();
+        bool getSign() const;
 
         Fraction GetFlipped();
 
@@ -31,18 +29,20 @@ class Fraction
 
         void setDenum(Integer num);
 
+        void setSign(bool sign);
+
         // Методы проверки состояния 
         bool IsSame(const Fraction* other) const;
 
         static bool IsFracEqual(const Fraction& obj, const Fraction& other);
 
-        bool IsProper();
+        bool IsProper() const;
 
-        bool IsImproper();
+        bool IsImproper() const;
 
-        bool IsPositive();
+        bool IsPositive() const;
         
-        bool IsNegative();
+        bool IsNegative() const;
 
         Fraction operator+(const Fraction& other) const;
       
