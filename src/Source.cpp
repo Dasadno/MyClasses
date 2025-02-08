@@ -17,8 +17,8 @@ int main() {
 	num2.setSign(true);
 	
 	Fraction Rat1;
-	Rat1.setDenum(4);
-	Rat1.setNum(8);
+	Rat1.setDenum(3);
+	Rat1.setNum(10);
 	Rat1.setSign(true);
 
 	Fraction Rat2;
@@ -28,10 +28,8 @@ int main() {
 	
 
 
-	std::cout << Rat1 << "\n";
-
-	std::cout << Rat2 << "\n";
-	std::cout << Rat1.getUnits();
+	
+	std::cout << Fraction::FractionReduce(Rat1);
 	std::cout << Fraction::FractionReduce(Rat2);
 	
 

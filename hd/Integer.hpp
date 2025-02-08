@@ -40,7 +40,7 @@ public:
 
 	Integer operator / (const Integer& counter)const;
 
-	Integer& operator - (const Integer& counter)const;
+	Integer& operator - (const Integer& other) const;
 	//”нарный -
 	Integer operator - ();
 

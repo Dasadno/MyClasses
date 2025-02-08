@@ -33,15 +33,8 @@ Integer Fraction::getDenum() const
 }
 //Получить целую часть дроби
 Integer Fraction::getUnits() {
-    Integer counter = 0;
-    while ((num_ - denum_) > -1) {
-        if (num_ > denum_)
-        {
-            num_ - denum_;
-            counter++;
-        }
-    }
-    return counter;
+    FractionReduce(*this);
+    return this->num_;
 }
 
 bool Fraction::getSign() const{
@@ -122,25 +115,13 @@ bool Fraction::IsNegative() const{
 }
 
 //Сокращает дробь
-Fraction& Fraction::FractionReduce(Fraction frac) {
+Fraction& Fraction::FractionReduce(Fraction frac) 
     {
-        Integer k = 2;
-        while (frac.num_ % k == 0 && frac.denum_ % k == 0) {
-            if (frac.num_ % k == 0 && frac.denum_ % k == 0)
-            {
-                frac.num_ /= k;
-                frac.denum_ /= k;
-            }
-            if (frac.num_ == Integer(1) || frac.denum_ == Integer(1))
-            {
-                break;
-            }
-            k++;
-        }
-
+        Integer nod = frac.num_.Nod(frac.denum_);
+        frac.num_ /= nod;
+        frac.denum_ /= nod;
         return frac;
     }
-}
 
 
     Fraction Fraction::operator+(const Fraction& other) const{
