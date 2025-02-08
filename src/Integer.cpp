@@ -164,23 +164,15 @@
 			result.sign_ = !sign_;
 			result.value_ = other.value_ - value_;
 		}
-		else if (sign_ == other.sign_ && sign_ == false && value_ > other.value_) {
+		else if (sign_ == other.sign_ && sign_ == false) {
 			result.sign_ = sign_;
 			result.value_ = other.value_ + value_;
-		}
-		else if (sign_ == other.sign_ && sign_ == false && value_ < other.value_) {
-			result.sign_ = sign_;
-			result.value_ = other.value_ + value_;
-		}
-		else if (sign_ != other.sign_ && sign_ == true && value_ > other.value_) {
-			result.sign_ = sign_;
-			result.value_ = value_ - other.value_;
 		}
 		else if (sign_ != other.sign_ && sign_ == true && value_ < other.value_) {
 			result.sign_ = other.sign_;
 			result.value_ = other.value_ - value_;
 		}
-		else if (sign_ != other.sign_ && sign_ == false && value_ > other.value_) {
+		else if (sign_ != other.sign_ && value_ > other.value_) {
 			result.sign_ = sign_;
 			result.value_ = value_ - other.value_;
 		}
