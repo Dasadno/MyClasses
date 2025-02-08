@@ -21,6 +21,8 @@ class Fraction
 
         bool getSign() const;
 
+        Integer getUnits();
+
         Fraction GetFlipped();
 
         static Fraction& FractionReduce(Fraction frac);

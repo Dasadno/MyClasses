@@ -84,6 +84,6 @@ public:
 
 private:
 	bool sign_;
-	unsigned value_;
+	long value_;
 
 };

@@ -31,13 +31,21 @@ Integer Fraction::getDenum() const
 {
     return denum_;
 }
+//Получить целую часть дроби
+Integer Fraction::getUnits() {
+    Integer counter = 0;
+    while ((num_ - denum_) > -1) {
+        if (num_ > denum_)
+        {
+            num_ - denum_;
+            counter++;
+        }
+    }
+    return counter;
+}
 
 bool Fraction::getSign() const{
-    if (num_.getSign() != denum_.getSign())
-    {
-        return false;
-    }
-    return true;
+    return num_.getSign() == denum_.getSign();
 }
 
 Fraction Fraction::GetFlipped()
