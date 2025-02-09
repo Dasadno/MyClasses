@@ -49,17 +49,20 @@ Fraction Fraction::GetFlipped()
     num_ = tmp;
     return *this;
 }
+Fraction Fraction::GetSimple() const
+{
+    return FractionReduce(*this);
+}
 //Сеттеры
 void Fraction::setNum(Integer num)
 {
     num_ = num;
-    num_.setSign(num > 0 ? true: false);
-   
+    num_.setSign(num > 0);
 }
 void Fraction::setDenum(Integer num)
 {
     denum_ = num;
-    denum_.setSign(num > 0 ? true : false);
+    denum_.setSign(num > 0);
 }
 
 void Fraction::setSign(bool sign) {

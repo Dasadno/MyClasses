@@ -25,6 +25,8 @@ class Fraction
 
         Fraction GetFlipped();
 
+        Fraction GetSimple() const;
+
         static Fraction& FractionReduce(Fraction frac);
 
         void setNum(Integer num);
