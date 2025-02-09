@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Real.cpp" />
     <ClCompile Include="src\Fraction.cpp" />
     <ClCompile Include="src\Integer.cpp" />
     <ClCompile Include="src\Source.cpp" />
@@ -26,6 +27,7 @@
   <ItemGroup>
     <ClInclude Include="hd\Fraction.hpp" />
     <ClInclude Include="hd\Integer.hpp" />
+    <ClInclude Include="Real.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
