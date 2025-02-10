@@ -23,11 +23,13 @@
     <ClCompile Include="src\Fraction.cpp" />
     <ClCompile Include="src\Integer.cpp" />
     <ClCompile Include="src\Source.cpp" />
+    <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hd\Fraction.hpp" />
     <ClInclude Include="hd\Integer.hpp" />
     <ClInclude Include="Real.hpp" />
+    <ClInclude Include="String.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
