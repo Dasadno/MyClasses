@@ -76,7 +76,11 @@ public:
 	void push_back(char ch);
 	void emplace_back(char ch);   
 
+
 private:
+	
+	struct {}allocator_;
+
 	char* str_;
 	size_t size_;
 	size_t capacity_;
