@@ -22,12 +22,16 @@
     <ClCompile Include="Real.cpp" />
     <ClCompile Include="src\Fraction.cpp" />
     <ClCompile Include="src\Integer.cpp" />
+    <ClCompile Include="src\Real.cpp" />
     <ClCompile Include="src\Source.cpp" />
+    <ClCompile Include="src\String.cpp" />
     <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hd\Fraction.hpp" />
     <ClInclude Include="hd\Integer.hpp" />
+    <ClInclude Include="hd\Real.hpp" />
+    <ClInclude Include="hd\String.h" />
     <ClInclude Include="Real.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

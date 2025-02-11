@@ -1,7 +1,8 @@
 #pragma once
 
-#include <string.h>;
-#include <iostream>;
+#include <string.h>
+#include <iostream>
+
 class String
 {
 public:
