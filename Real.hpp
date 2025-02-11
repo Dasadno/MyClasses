@@ -1,7 +1,7 @@
 #pragma once
 
-#include "..\hd\Integer.hpp"
-#include "..\hd\Fraction.hpp"
+#include "Integer.hpp"
+#include "Fraction.hpp"
 
 
 class Real

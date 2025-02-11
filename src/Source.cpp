@@ -29,8 +29,8 @@ int main() {
 
 
 	
-	std::cout << Fraction::FractionReduce(Rat1);
-	std::cout << Fraction::FractionReduce(Rat2);
+	std::cout << Rat1 + Rat2;
+
 	
 
 
