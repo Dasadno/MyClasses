@@ -3,21 +3,22 @@
 #include <string.h>
 #include <iostream>
 
+
 class String
 {
 public:
 	String();
-	explicit String(int lenght);
+	explicit String(int num);
 	String(const char* str);
 
-	// rule of 3 Если что-то из одного нижеперечисленного нам нужно, то мы обязаны реализовать остальные 2 штуки
-	~String(); //Деструкотор
-	String(const String& other); // Конструктор копирования
-	String& operator=(const String& other); //Оператор переприсваивания копирования Copy assign operator
+	// rule of 3 
+	~String(); //Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
+	String(const String& other); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+	String& operator=(const String& other); //РћРїРµСЂР°С‚РѕСЂ РїРµСЂРµРїСЂРёСЃРІР°РёРІР°РЅРёСЏ РєРѕРїРёСЂРѕРІР°РЅРёСЏ Copy assign operator
 
-	// rule of 5 / move Семантика
-	String(String&& other)noexcept; // Конструктор переноса
-	String& operator=(String&& other); // оператор переноса переприсваивания
+	// rule of 5 
+	String(String&& other)noexcept; // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРµСЂРµРЅРѕСЃР°
+	String& operator=(String&& other); // РѕРїРµСЂР°С‚РѕСЂ РїРµСЂРµРЅРѕСЃР° РїРµСЂРµРїСЂРёСЃРІР°РёРІР°РЅРёСЏ
 
 	void reserve(int new_capacity);
 	void shrink_to_fit();
@@ -30,12 +31,12 @@ public:
 
 	String& operator+=(const String& other);
 	String& operator+=(char ch);
-	friend String& operator+(const String& lsd, const String& rsd);
-	friend String& operator+(const String& lsd, char ch);
-	friend String& operator+(char ch, const String& rsd);
+	friend String operator+(const String& lsd, const String& rsd);
+	friend String operator+(const String& lsd, char ch);
+	friend String operator+(char ch, const String& rsd);
 
 
-	friend String& operator<(const String& lsd, const String& rsd);
+	friend bool operator<(const String& lsd, const String& rsd);
 	friend bool operator>(const String& lsd, const String& rsd);
 	friend bool operator>=(const String& lsd, const String& rsd);
 	friend bool operator<=(const String& lsd, const String& rsd);
@@ -43,7 +44,7 @@ public:
 	friend bool operator!=(const String& lsd, const String& rsd);
 
 	char& operator[](int i)noexcept;
-	const char* operator[](int i)const noexcept;
+	const char& operator[](int i)const noexcept;
 
 	char& at(int i);
 	const char& at(int i)const;
@@ -80,7 +81,26 @@ public:
 
 private:
 	
-	struct {}allocator_;
+	struct
+	{
+		char* allocate(int size) {
+			char(*size_) = new char[size];
+			return size_;
+		}
+		void deallocate(char* place) {
+			delete[] place;
+		}
+		void reallocate(char*& place, int old_size, int new_size) 
+		{
+			char* newPlace = new char[new_size];
+			for (int i = 0; i < old_size && i < new_size; i++)
+			{
+				newPlace[i] = place[i];
+			}
+			delete[] place;
+			place = newPlace;
+		}
+	}allocator_;
 
 	char* str_;
 	size_t size_;
