@@ -17,7 +17,7 @@ String::String(int num)
 String::String(const char* str) 
 {
 	allocator_.allocate(strlen(str));
-	::memcpy(str_, str, strnlen(str, INT_MAX));
+	::memcpy(str_, str, strnlen(str, INT_MAX)); // here memory runtime bug :( 
 }
 
 String::~String() {
