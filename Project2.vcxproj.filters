@@ -24,10 +24,10 @@
     <ClCompile Include="src\Integer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Real.cpp">
+    <ClCompile Include="src\Real.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="String.cpp">
+    <ClCompile Include="src\String.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,7 +38,10 @@
     <ClInclude Include="hd\Integer.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Real.hpp">
+    <ClInclude Include="hd\Real.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="hd\String.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

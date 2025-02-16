@@ -13,6 +13,7 @@ String::String(int num)
 	size_ = 0;
 	capacity_ = num;
 }
+
 String::String(const char* str) 
 {
 	allocator_.allocate(strlen(str));
@@ -34,6 +35,7 @@ String& String::operator=(const String& other) {
 	str_ = other.str_;
 	size_ = other.size_;
 	capacity_ = other.capacity_;
+	return *this;
 }
 String::String(String&& other)noexcept {
 	
@@ -51,6 +53,7 @@ String& String::operator=(String&& other) {
 	std::swap(size_, other.size_);
 	std::swap(capacity_, other.capacity_);
 	std::swap(str_, other.str_);
+	return *this;
 }
 
 
@@ -167,6 +170,8 @@ const char& String::at(int i)const {
 	return str_[i];
 }
 
+
+
 char* String::data() {
 	char* ptr = str_;
 	return ptr;
@@ -175,7 +180,15 @@ const char* String::c_str()const {
 	return str_;
 }
 
+std::ostream& operator<<(std::ostream& out, const String& rsd) {
+	out << rsd;
+	return out;
+}
 
+std::istream& operator>>(std::istream& out, const String& rsd) {
+	out >> rsd;
+	return out;
+}
 
 
 

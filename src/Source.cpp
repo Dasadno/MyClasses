@@ -1,7 +1,7 @@
 #include <iostream>
 #include "..\hd\Integer.hpp"
 #include "..\hd\Fraction.hpp"
-
+#include "..\hd\String.h"
 
 
 int main() {
@@ -27,8 +27,9 @@ int main() {
 	Rat2.setSign(true);
 	
 
-
+	String str1 = "asd";
 	
+	std::cout << str1;
 	std::cout << Rat1 + Rat2;
 
 	
