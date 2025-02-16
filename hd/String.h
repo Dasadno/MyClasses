@@ -77,8 +77,9 @@ public:
 
 	void push_back(const char& ch);
 	void push_back(char&& ch);
-	void emplace_back(const char& ch);
-	void emplace_back(char&& ch);   
+
+	void pop_back();
+
 
 
 private:

@@ -199,3 +199,9 @@ void String::push_back(char&& ch)
 {
 	this + ch;
 }
+
+void String::pop_back()
+{
+	str_[::strlen(str_) - 1] = '/0';
+	size_ - 1;
+}
