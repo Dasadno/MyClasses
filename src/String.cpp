@@ -190,7 +190,12 @@ std::istream& operator>>(std::istream& out, const String& rsd) {
 	return out;
 }
 
+void String::push_back(const char& ch)
+{
+	this + ch;
+}
 
-
-
-
+void String::push_back(char&& ch)
+{
+	this + ch;
+}
