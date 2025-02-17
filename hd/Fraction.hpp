@@ -38,7 +38,7 @@ class Fraction
         // Методы проверки состояния 
         bool IsSame(const Fraction* other) const;
 
-        static bool IsFracEqual(const Fraction& obj, const Fraction& other);
+        bool IsFracEqual(const Fraction& other) const;
 
         bool IsProper() const;
 

@@ -74,8 +74,8 @@ bool Fraction::IsSame(const Fraction* other) const{
     return this == other;
 }
 
-bool Fraction::IsFracEqual(const Fraction& obj, const Fraction& other) {
-    return FractionReduce(other) == FractionReduce(obj);
+bool Fraction::IsFracEqual(const Fraction& other) const{
+    return FractionReduce(other) == FractionReduce(*this);
 }
 
 bool Fraction::IsProper() const{
