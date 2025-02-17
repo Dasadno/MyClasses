@@ -23,7 +23,7 @@ class Fraction
 
         Integer getUnits();
 
-        Fraction GetFlipped();
+        Fraction GetFlipped() const;
 
         Fraction GetSimple() const;
 

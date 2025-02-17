@@ -42,13 +42,10 @@ bool Fraction::getSign() const{
     return num_.getSign() == denum_.getSign();
 }
 
-Fraction Fraction::GetFlipped()
+Fraction Fraction::GetFlipped() const
 {
     Fraction copy{ *this };
-    Integer tmp;
-    tmp = copy.denum_;
-    copy.denum_ = num_;
-    copy.num_ = tmp;
+    copy.flip();
     return copy;
 }
 Fraction Fraction::GetSimple() const
