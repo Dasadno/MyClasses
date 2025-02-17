@@ -192,7 +192,15 @@
 
 	Integer Integer::operator % (const Integer& other) const
 	{
+		if (other.value_ != 0)
+		{
 			return static_cast<Integer>(value_ % other.value_);
+		}
+		else
+		{
+			std::cerr << "Invalid value";
+			exit(-1);
+		}
 	}
 	// Операторы сравнения
 	bool operator == (const Integer& num, const Integer& other)

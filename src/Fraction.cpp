@@ -24,7 +24,8 @@ void Fraction::flip()
     num_ = tmp;
 }
 //Геттеры
-Integer Fraction::getNum() const{
+Integer Fraction::getNum() const
+{
     return num_;
 }
 Integer Fraction::getDenum() const
@@ -43,11 +44,12 @@ bool Fraction::getSign() const{
 
 Fraction Fraction::GetFlipped()
 {
+    Fraction copy{ *this };
     Integer tmp;
-    tmp = denum_;
-    denum_ = num_;
-    num_ = tmp;
-    return *this;
+    tmp = copy.denum_;
+    copy.denum_ = num_;
+    copy.num_ = tmp;
+    return copy;
 }
 Fraction Fraction::GetSimple() const
 {
