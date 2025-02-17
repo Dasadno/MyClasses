@@ -46,7 +46,7 @@ String::String(String&& other)noexcept {
 	std::swap(capacity_, other.capacity_);
 	std::swap(str_, other.str_);
 }
-String& String::operator=(String&& other) {
+String& String::operator=(String&& other)noexcept {
 	str_ = 0;
 	size_ = 0;
 	capacity_ = 0;
@@ -192,12 +192,12 @@ std::istream& operator>>(std::istream& out, const String& rsd) {
 
 void String::push_back(const char& ch)
 {
-	this + ch;
+	*this += ch;
 }
 
 void String::push_back(char&& ch)
 {
-	this + ch;
+	*this += ch;
 }
 
 void String::pop_back()

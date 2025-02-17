@@ -18,7 +18,7 @@ public:
 
 	// rule of 5 
 	String(String&& other)noexcept; // Конструктор переноса
-	String& operator=(String&& other); // оператор переноса переприсваивания
+	String& operator=(String&& other)noexcept; // оператор переноса переприсваивания
 
 	void reserve(int new_capacity);
 	void shrink_to_fit();
