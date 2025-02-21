@@ -2,7 +2,8 @@
 
 #include <string.h>
 #include <iostream>
-
+#include <climits>
+#include <cstddef>
 
 class String
 {
@@ -55,7 +56,31 @@ public:
 	char* data();
 	const char* c_str()const;
 
-	class iterator{};
+	class iterator
+	{
+	public:
+		using iterator_category = std::forward_iterator_tag;
+		using difference_type = std::ptrdiff_t;
+		using value_type = int;
+		using pointer = int*;
+		using reference = int&;
+
+		iterator(pointer ptr) : m_ptr(ptr) {}
+
+		reference operator*() const { return *m_ptr; }
+		pointer operator->() { return m_ptr; }
+		iterator& operator++() { m_ptr++; return *this; }
+		iterator operator++(int) { iterator tmp = *this; ++(*this); return tmp; }
+		friend bool operator== (const iterator& a, const iterator& b) { return a.m_ptr == b.m_ptr; };
+		friend bool operator!= (const iterator& a, const iterator& b) { return a.m_ptr != b.m_ptr; };
+
+	private:
+		pointer m_ptr;
+	};
+
+	/*iterator begin() { return iterator(&m_data[0]); }
+	iterator end() { return iterator(&m_data[200]); }*/
+
 	class const_iterator{};
 	class right_iterator{};
 	class const_right_iterator {};
