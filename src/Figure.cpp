@@ -1,0 +1,1 @@
+#include "..\hd\Figure.hpp"

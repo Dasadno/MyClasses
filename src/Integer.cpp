@@ -27,7 +27,7 @@
 		return sign_;
 	}
 
-	unsigned Integer::getValue()const {
+	long Integer::getValue()const {
 		return value_;
 	}
 	// Функции проверки состояния

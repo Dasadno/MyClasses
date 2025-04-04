@@ -19,15 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Figure.cpp" />
     <ClCompile Include="src\Fraction.cpp" />
     <ClCompile Include="src\Integer.cpp" />
+    <ClCompile Include="src\Point2d.cpp" />
     <ClCompile Include="src\Real.cpp" />
     <ClCompile Include="src\Source.cpp" />
     <ClCompile Include="src\String.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="hd\Figure.hpp" />
     <ClInclude Include="hd\Fraction.hpp" />
     <ClInclude Include="hd\Integer.hpp" />
+    <ClInclude Include="hd\Matrix.hpp" />
+    <ClInclude Include="hd\Point2d.hpp" />
     <ClInclude Include="hd\Real.hpp" />
     <ClInclude Include="hd\String.h" />
   </ItemGroup>

@@ -19,12 +19,12 @@ int main() {
 	Fraction Rat1;
 	Rat1.setDenum(3);
 	Rat1.setNum(10);
-	Rat1.setSign(true);
+	Rat1.SetSign(true);
 
 	Fraction Rat2;
 	Rat2.setDenum(16);
 	Rat2.setNum(32);
-	Rat2.setSign(true);
+	Rat2.SetSign(true);
 	
 
 	String str1 = "asd";

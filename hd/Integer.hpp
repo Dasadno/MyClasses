@@ -16,7 +16,7 @@ public:
 	void setValue(unsigned value);
 	//Гетеры
 	bool getSign()const;
-	unsigned getValue()const;
+	long getValue()const;
 	// Функции проверки состояния
 	//bool isPrimeNum();
 	
