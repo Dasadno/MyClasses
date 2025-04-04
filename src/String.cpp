@@ -16,8 +16,9 @@ String::String(int num)
 
 String::String(const char* str) 
 {
-	allocator_.allocate(strlen(str));
-	::memcpy(str_, str, strnlen(str, INT_MAX)); // here memory runtime bug :( 
+	str_ = allocator_.allocate(strlen(str));
+	std::memcpy(str_, str, strlen(str));
+	capacity_ = strlen(str);
 }
 
 String::~String() {
