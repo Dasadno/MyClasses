@@ -1,6 +1,6 @@
 #include "..\hd\Integer.hpp"
 
-	//Конструкторы
+	//ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г»
 	Integer::Integer() :Integer(false, 0u) { }
 	Integer::Integer(bool sign, unsigned units) :sign_(sign), value_(value_) { }
 	Integer::Integer(int number) {
@@ -14,7 +14,7 @@
 			value_ = static_cast<unsigned>(number);
 		}
 	}
-	//Сетеры
+	//Г‘ГҐГІГҐГ°Г»
 	void Integer::setSign(bool sign) {
 		this->sign_ = sign;
 	}
@@ -22,7 +22,7 @@
 	void Integer::setValue(unsigned value) {
 		this->value_ = value;
 	}
-	//Гетеры
+	//ГѓГҐГІГҐГ°Г»
 	bool Integer::getSign()const {
 		return sign_;
 	}
@@ -30,7 +30,7 @@
 	long Integer::getValue()const {
 		return value_;
 	}
-	// Функции проверки состояния
+	// Г”ГіГ­ГЄГ¶ГЁГЁ ГЇГ°Г®ГўГҐГ°ГЄГЁ Г±Г®Г±ГІГ®ГїГ­ГЁГї
 	bool Integer::isSimple()const
 	{
 		if (value_ < 2)
@@ -67,23 +67,23 @@
 		return std::gcd(value_, other.value_) == 1;
 	}
 
-	// нахождение наибольшего общего делителя
+	// Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГҐ Г­Г ГЁГЎГ®Г«ГјГёГҐГЈГ® Г®ГЎГ№ГҐГЈГ® Г¤ГҐГ«ГЁГІГҐГ«Гї
 	int Integer::Nod(Integer other)const
 	{
 		return std::gcd(value_, other.value_);
 	}
 
-	// нахождение наибольшего общего кратного
+	// Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГҐ Г­Г ГЁГЎГ®Г«ГјГёГҐГЈГ® Г®ГЎГ№ГҐГЈГ® ГЄГ°Г ГІГ­Г®ГЈГ®
 	int Integer::Nok(Integer other)const
 	{
 		return std::lcm(value_, other.value_);
 	}
 
-	//Перегрузки операторов --------------------------------------
+	//ГЏГҐГ°ГҐГЈГ°ГіГ§ГЄГЁ Г®ГЇГҐГ°Г ГІГ®Г°Г®Гў --------------------------------------
 
-	//Алгебраические операторы
+	//ГЂГ«ГЈГҐГЎГ°Г ГЁГ·ГҐГ±ГЄГЁГҐ Г®ГЇГҐГ°Г ГІГ®Г°Г»
 
-	//Оператор сложения
+	//ГЋГЇГҐГ°Г ГІГ®Г° Г±Г«Г®Г¦ГҐГ­ГЁГї
 	Integer& Integer::operator + (const Integer& other) const
 	{
 		Integer result;
@@ -110,11 +110,11 @@
 		return result;
 		
 	}
-	//Унарный +
+	//Г“Г­Г Г°Г­Г»Г© +
 	Integer Integer::operator + () {
 		return *this;
 	}
-	//Оператор умножения
+	//ГЋГЇГҐГ°Г ГІГ®Г° ГіГ¬Г­Г®Г¦ГҐГ­ГЁГї
 	Integer Integer::operator * (const Integer& other) const
 	{
 		Integer result;
@@ -130,7 +130,7 @@
 		}
 		return result;
 	}
-	//Оператор деления
+	//ГЋГЇГҐГ°Г ГІГ®Г° Г¤ГҐГ«ГҐГ­ГЁГї
 	Integer Integer::operator / (const Integer& other) const
 	{
 		if (other.value_ == 0)
@@ -151,7 +151,7 @@
 		}
 		return result;
 	}
-	//Оператор вычитания
+	//ГЋГЇГҐГ°Г ГІГ®Г° ГўГ»Г·ГЁГІГ Г­ГЁГї
 	Integer& Integer::operator - (const Integer& other) const
 	{
 		Integer result;
@@ -182,7 +182,7 @@
 		}	
 		return result;
 	}
-	//Унарный -
+	//Г“Г­Г Г°Г­Г»Г© -
 	Integer Integer::operator - ()
 	{
 		Integer copy{ *this };
@@ -202,7 +202,7 @@
 			exit(-1);
 		}
 	}
-	// Операторы сравнения
+	// ГЋГЇГҐГ°Г ГІГ®Г°Г» Г±Г°Г ГўГ­ГҐГ­ГЁГї
 	bool operator == (const Integer& num, const Integer& other)
 	{
 		if (num.getSign() == other.getSign())
@@ -277,7 +277,7 @@
 		}
 	}
 
-	//Декремент, инкремент (Префиксные)
+	//Г„ГҐГЄГ°ГҐГ¬ГҐГ­ГІ, ГЁГ­ГЄГ°ГҐГ¬ГҐГ­ГІ (ГЏГ°ГҐГґГЁГЄГ±Г­Г»ГҐ)
 	Integer& Integer::operator++ ()
 	{
 		Integer copy{ *this };
@@ -301,7 +301,7 @@
 		}
 		return copy;
 	}
-	//Декремент, инкремент (Постфиксные)
+	//Г„ГҐГЄГ°ГҐГ¬ГҐГ­ГІ, ГЁГ­ГЄГ°ГҐГ¬ГҐГ­ГІ (ГЏГ®Г±ГІГґГЁГЄГ±Г­Г»ГҐ)
 	Integer Integer::operator++ (int)
 	{
 		Integer copy{ *this };
@@ -327,7 +327,7 @@
 		}
 		return copy;
 	}
-	// операторы присваивания
+	// Г®ГЇГҐГ°Г ГІГ®Г°Г» ГЇГ°ГЁГ±ГўГ ГЁГўГ Г­ГЁГї
 	Integer& Integer::operator += (Integer other)
 	{
 		return *this = *this + other;
@@ -362,3 +362,23 @@
 		return out;
 	}
 
+	std::istream operator>>(std::istream& in, Integer& other)
+	{
+		std::string input;
+		std::string inputNum;
+		in >> input;
+		if (input[0] == '-')
+		{
+			for (int i = 1; i < input.length(); i++)
+			{
+				inputNum[i - 1] = input[i];
+			}
+			other.setSign(false);
+		}
+		else
+		{
+			other.setSign(true);
+			inputNum = input;
+		}
+		other.setValue(stoi(inputNum));
+	}
