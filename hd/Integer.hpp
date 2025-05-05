@@ -3,21 +3,22 @@
 #include <iostream>
 #include <cmath>
 #include <numeric>
+#include <string>
 
 class Integer
 {
 public:
-	//Конструкторы
+	//ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г»
 	Integer();
 	Integer(bool sign, unsigned units);
 	Integer(int number);
-	//Сетеры
+	//Г‘ГҐГІГҐГ°Г»
 	void setSign(bool sign);
 	void setValue(unsigned value);
-	//Гетеры
+	//ГѓГҐГІГҐГ°Г»
 	bool getSign()const;
 	long getValue()const;
-	// Функции проверки состояния
+	// Г”ГіГ­ГЄГ¶ГЁГЁ ГЇГ°Г®ГўГҐГ°ГЄГЁ Г±Г®Г±ГІГ®ГїГ­ГЁГї
 	//bool isPrimeNum();
 	
 	bool isOdd();
@@ -29,11 +30,11 @@ public:
 	int Nok(Integer other)const;
 	bool isSimple()const;
 
-	//Перегрузки операторов
+	//ГЏГҐГ°ГҐГЈГ°ГіГ§ГЄГЁ Г®ГЇГҐГ°Г ГІГ®Г°Г®Гў
 
-	//Алгебраические операторы
+	//ГЂГ«ГЈГҐГЎГ°Г ГЁГ·ГҐГ±ГЄГЁГҐ Г®ГЇГҐГ°Г ГІГ®Г°Г»
 	Integer& operator + (const Integer& counter)const;
-	//Унарный +
+	//Г“Г­Г Г°Г­Г»Г© +
 	Integer operator + ();
 
 	Integer operator * (const Integer& counter)const;
@@ -41,13 +42,13 @@ public:
 	Integer operator / (const Integer& counter)const;
 
 	Integer& operator - (const Integer& other) const;
-	//Унарный -
+	//Г“Г­Г Г°Г­Г»Г© -
 	Integer operator - ();
 
 	Integer operator % (const Integer& counter)const;
 
 
-	// Операторы сравнения
+	// ГЋГЇГҐГ°Г ГІГ®Г°Г» Г±Г°Г ГўГ­ГҐГ­ГЁГї
 	friend bool operator == (const Integer& num, const Integer& other);
 
 	friend bool operator != (const Integer& num, const Integer& other);
@@ -60,17 +61,17 @@ public:
 
 	friend bool operator >= (const Integer& num, const Integer& other);
 
-	//Префексный Декремент, Инкремент
+	//ГЏГ°ГҐГґГҐГЄГ±Г­Г»Г© Г„ГҐГЄГ°ГҐГ¬ГҐГ­ГІ, Г€Г­ГЄГ°ГҐГ¬ГҐГ­ГІ
 	Integer& operator++ ();
 
 	Integer& operator-- ();
 
-	// Постфиксный Декремент, Инкримент
+	// ГЏГ®Г±ГІГґГЁГЄГ±Г­Г»Г© Г„ГҐГЄГ°ГҐГ¬ГҐГ­ГІ, Г€Г­ГЄГ°ГЁГ¬ГҐГ­ГІ
 	Integer operator++ (int);
 
 	Integer operator-- (int);
 
-	// операторы присвоения
+	// Г®ГЇГҐГ°Г ГІГ®Г°Г» ГЇГ°ГЁГ±ГўГ®ГҐГ­ГЁГї
 	Integer& operator += (Integer other);
 
 	Integer& operator -= (Integer other);
@@ -79,7 +80,7 @@ public:
 
 	Integer& operator /= (const Integer& counter);
 	
-	//Оператор вывода
+	//ГЋГЇГҐГ°Г ГІГ®Г° ГўГ»ГўГ®Г¤Г 
 	friend std::ostream& operator<<(std::ostream& out, const Integer& other);
 
 private:
