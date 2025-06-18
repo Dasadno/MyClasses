@@ -1,3 +1,4 @@
+/*
 #pragma once
 
 #include <string.h>
@@ -78,8 +79,8 @@ public:
 		pointer m_ptr;
 	};
 
-	/*iterator begin() { return iterator(&m_data[0]); }
-	iterator end() { return iterator(&m_data[200]); }*/
+	iterator begin() { return iterator(&m_data[0]); }
+	iterator end() { return iterator(&m_data[200]); }
 
 	class const_iterator{};
 	class right_iterator{};
@@ -134,4 +135,4 @@ private:
 	size_t size_;
 	size_t capacity_;
 };
-
+*/

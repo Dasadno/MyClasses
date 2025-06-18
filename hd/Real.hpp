@@ -1,100 +1,52 @@
-#pragma once
+#ifndef REAL_HPP
+#define REAL_HPP
 
-#include "../hd/Fraction.hpp"
-#include "../hd/Integer.hpp"
+#include "Fraction.hpp"
 
-class Real
-{
+
+class Real {
 public:
 
-	// constructors
-    
-    Real() : Real(Integer(), Fraction()) {}   
-    Real(const Integer& units, const Fraction& fractional); 
-    Real(const Fraction& obj);
-    Real(Integer obj) : units_(obj), fractional_(Integer(1)) {};
-    Real(
-        int units,
-        Fraction fractional) :
-        units_(units),
-        fractional_(fractional) {};
-    Real(
-        unsigned units,
-        Fraction fractional) :
-        units_(units),
-        fractional_(fractional) {};
+	Real();
+	Real(Integer divider, Integer divided);
+	Real(Fraction frac);
 
 
-    // сеттеры и геттеры
+	Real operator+(Real other);
+	Real operator-(Real other);
+	Real operator*(Real other);
+	Real operator/(Real other);
 
-    //setters
-    void SetUnits(Integer units);
-    void SetFractional(Fraction fractional);
+	Real operator+=(Real other);
+	Real operator-=(Real other);
+	Real operator*=(Real other);
+	Real operator/=(Real other);
 
-    // getters
-    Integer GetUnits();
-    Fraction GetFractional();
-
-
-    // Оператор вывода
-    friend std::ostream& operator<<(std::ostream& out, const Real& obj);
-
-
-    // Проверки числа
-    bool isDecimalPositive() const;
-
-    bool isDecimalNegative() const;
-
-    bool isDecimalSame(const Real& other) const;
-
-    bool isDecimal() const;
-
-
-    // Операторы
-
-    // Арифметические операторы
-    Real operator+(const Real& other) const;
-
-    Real operator-(const Real& other) const;
-
-    Real operator*(const Real& other) const;
-
-    Real operator/(const Real& other) const;
-
-
-    // Операторы сравнения
-    bool operator<(const Real& other) const;
-
-    bool operator>(const Real& other) const;
-
-    bool operator<=(const Real& other) const;
-
-    bool operator>=(const Real& other) const;
-
-    bool operator==(const Real& other) const;
-
-    bool operator!=(const Real& other) const;
-
-
-    // Операторы присваивания
-    Real& operator+=(const Real& other);
-
-    Real& operator-=(const Real& other);
-
-    Real& operator*=(const Real& other);
-
-    Real& operator/=(const Real& other);
-
-
-    // Унарные операторы
-    Real operator+();
-    Real operator-() const;
+	Real operator=(Real other);
+	Real operator=(int other);
 
 
 
-    // поля класса
+
+	friend std::ostream& operator<< (std::ostream& out, Real& read);
+
+	void SetValue(Integer divider, Integer divided);
+	void SetValue(Fraction value);
+	void SetValue(Real value);
+
+	void ValueOut();
+
+	std::string ToString();
+
+	void CalcAfterDot();
+
 private:
 
-    Integer units_;
-    Fraction fractional_;
+
+	Fraction value;
+	std::string afterDot;
 };
+
+
+
+#endif // !REAL_HPP

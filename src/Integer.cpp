@@ -29,8 +29,19 @@
 
 	long Integer::getValue()const {
 		return value_;
+	}	
+
+	int Integer::ToInt() {
+		if (isPositive() == true) {
+			return int(value_);
+		}
+		else {
+			return -int(value_);
+		}
+
 	}
-	// Ôóíêöèè ïðîâåðêè ñîñòîÿíèÿ
+
+
 	bool Integer::isSimple()const
 	{
 		if (value_ < 2)
@@ -67,23 +78,21 @@
 		return std::gcd(value_, other.value_) == 1;
 	}
 
-	// íàõîæäåíèå íàèáîëüøåãî îáùåãî äåëèòåëÿ
+	std::string Integer::ToString() {
+		return std::to_string(value_);
+	}
+
+
 	int Integer::Nod(Integer other)const
 	{
 		return std::gcd(value_, other.value_);
 	}
 
-	// íàõîæäåíèå íàèáîëüøåãî îáùåãî êðàòíîãî
 	int Integer::Nok(Integer other)const
 	{
 		return std::lcm(value_, other.value_);
 	}
 
-	//Ïåðåãðóçêè îïåðàòîðîâ --------------------------------------
-
-	//Àëãåáðàè÷åñêèå îïåðàòîðû
-
-	//Îïåðàòîð ñëîæåíèÿ
 	Integer& Integer::operator + (const Integer& other) const
 	{
 		Integer result;
@@ -110,11 +119,11 @@
 		return result;
 		
 	}
-	//Óíàðíûé +
+
 	Integer Integer::operator + () {
 		return *this;
 	}
-	//Îïåðàòîð óìíîæåíèÿ
+
 	Integer Integer::operator * (const Integer& other) const
 	{
 		Integer result;
@@ -362,16 +371,16 @@
 		return out;
 	}
 
-	std::istream operator>>(std::istream& in, Integer& other)
+	void operator>>(std::istream& in, Integer& other)
 	{
 		std::string input;
 		std::string inputNum;
-		in >> input;
+		
 		if (input[0] == '-')
 		{
 			for (int i = 1; i < input.length(); i++)
 			{
-				inputNum[i - 1] = input[i];
+				inputNum[i] = input[i];
 			}
 			other.setSign(false);
 		}
@@ -381,4 +390,5 @@
 			inputNum = input;
 		}
 		other.setValue(stoi(inputNum));
+		in >> other;
 	}

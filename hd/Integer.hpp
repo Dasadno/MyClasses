@@ -18,6 +18,7 @@ public:
 	//Ãåòåðû
 	bool getSign()const;
 	long getValue()const;
+	int ToInt();
 	// Ôóíêöèè ïðîâåðêè ñîñòîÿíèÿ
 	//bool isPrimeNum();
 	
@@ -27,6 +28,7 @@ public:
 	bool isNegative()const;
 	int Nod(Integer other)const;
 	bool isCoprime(Integer other)const;
+	std::string ToString();
 	int Nok(Integer other)const;
 	bool isSimple()const;
 

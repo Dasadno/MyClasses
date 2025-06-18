@@ -1,303 +1,121 @@
-#include "..\hd\Real.hpp"
+#include "../hd/Real.hpp"
 
-// constructors
-Real::Real(const Integer& units, const Fraction& fractional)
-{
-	units_ = units;
-	if (!fractional.isProper())
-	{
-		units_ = units_ + (Fraction(fractional).GetNumerator() / Fraction(fractional).GetDenominator());
-		Integer newNumerator = Fraction(fractional).GetNumerator() % Fraction(fractional).GetDenominator();
-		fractional_ = Fraction(newNumerator, Fraction(fractional).GetDenominator());
-	}
-	else
-	{
-		fractional_ = fractional;
-	}
+
+
+
+
+
+
+Real::Real() {
+    value = Fraction(1, 1);
 }
-
-Real::Real(const Fraction& obj)
-{
-	if (obj.isProper()) {
-		units_ = 0;
-		fractional_ = obj;
-	}
-	else {
-		units_ = Fraction(obj).GetNumerator() / Fraction(obj).GetDenominator();
-		Integer newNumerator = Fraction(obj).GetNumerator() % Fraction(obj).GetDenominator();
-		if (newNumerator == 0) {
-			fractional_ = Fraction(0, 0);
-		}
-		else
-		{
-			fractional_ = Fraction(newNumerator, Fraction(obj).GetDenominator());
-		}
-	}
+Real::Real(Integer divided, Integer divider) {
+    value = Fraction(divided, divider);
+}
+Real::Real(Fraction frac) {
+    value = frac;
 }
 
 
-
-//setters
-void Real::SetUnits(Integer units)
-{
-	this->units_ = units;
+Real Real::operator+(Real other) {
+    return Real(value + other.value);
 }
 
-void Real::SetFractional(Fraction fractional)
-{
-	this->fractional_ = fractional;
+Real Real::operator-(Real other) {
+    return Real(value - other.value);
 }
 
-
-//getters
-Integer Real::GetUnits()
-{
-	return units_;
+Real Real::operator*(Real other) {
+    return Real(value * other.value);
 }
 
-Fraction Real::GetFractional()
-{
-	return fractional_;
+Real Real::operator/(Real other) {
+    return Real(value / other.value);
 }
 
 
-
-// Проверки числа
-bool Real::isDecimalPositive() const
-{
-	return units_.isPositive() == fractional_.isNumPositive();
+Real Real::operator+=(Real other) {
+    value += other.value;
+    return *this;
 }
 
-bool Real::isDecimalNegative() const
-{
-	return units_.isPositive() != fractional_.isNumPositive();
+Real Real::operator-=(Real other) {
+    value -= other.value;
+    return *this;
 }
 
-bool Real::isDecimalSame(const Real& other) const
-{
-	return this == &other;
+Real Real::operator*=(Real other) {
+    value *= other.value;
+    return *this;
 }
 
-bool Real::isDecimal() const
-{
-	return fractional_ != Fraction(0);
+Real Real::operator/=(Real other) {
+    value /= other.value;
+    return *this;
+}
+
+
+Real Real::operator=(Real other) {
+    value = other.value;
+    return *this;
+}
+Real Real::operator=(int other) {
+    value = Fraction(other, 1);;
+    return *this;
 }
 
 
 
-// Арифметические операторы
-Real Real::operator+(const Real& other) const
-{
-	Real result;
 
-	result.units_ = units_ + other.units_;
-	result.fractional_ = fractional_ + other.fractional_;
 
-	return result;
+std::ostream& operator<<(std::ostream& out, Real& read) {
+    read.ValueOut();
+    return out;
+};
+
+void Real::SetValue(Integer num, Integer denum) {
+    value.GetNumerator().setValue(num.ToInt());
+    value.GetDenominator().setValue(denum.ToInt());
 }
 
-Real Real::operator-(const Real& other) const
-{
-	Real result;
+void SetValue(Fraction value) {}
+void SetValue(Real value) {}
 
-	if (units_ > other.units_)
-	{
-		result.units_ = units_ - other.units_;
-	}
-	else
-	{
-		result.units_ = other.units_ - units_;
-	}
-
-	if (fractional_ > other.fractional_)
-	{
-		result.fractional_ = fractional_ - other.fractional_;
-	}
-	else
-	{
-		result.fractional_ = other.fractional_ - fractional_;
-	}
-
-	return result;
+void Real::ValueOut() {
+    std::cout << ToString() << std::endl;
 }
 
-Real Real::operator*(const Real& other) const
-{
-	Real result;
-
-	// сначала преобразовать в неправильную дробь, потом умножить, а затем преобразовать в реал
-
-	result.units_ = units_ * other.units_;
-	result.fractional_ = fractional_ * other.fractional_;
-
-	return result;
+std::string Real::ToString() {
+    CalcAfterDot();
+    if (value.GetNumerator() < value.GetDenominator()) {
+        return "0." + afterDot;
+    }
+    else {
+        return value.FtoInteger().ToString() + "." + afterDot;
+    }
 }
 
-Real Real::operator/(const Real& other) const    // переписать оператор
-{
-	if ((other.units_ == 0 || other.fractional_ == Fraction(0)) || (other.units_ == 0 && other.fractional_ == Fraction(0)))
-	{
-		std::cout << "Ошибка!! Деление на 0 запрещено!!\n\n";
-		::exit(-1);
-	}
+void Real::CalcAfterDot() {
+    afterDot = "";
+    Integer divider = value.GetNumerator();
+    Integer divided = value.GetDenominator();
 
-	Real result;
+    Integer integerPart = value.FtoInteger();
+    Integer remain = divided - (integerPart * divider);
 
-	/*Fraction resUnits;
-	Fraction resFraction;
+    int maxDigits = 20;
+    while (remain != 0 && maxDigits-- > 0) {
+        remain = remain * 10;
+        Integer digit = remain / divider;
+        afterDot += digit.ToString();
+        remain = remain - (digit * divider);
+    }
 
-	resUnits = Fraction(units_) / Fraction(other.units_);
-	resFraction = Fraction(fractional_) / Fraction(other.fractional_);
+    while (afterDot != "" && afterDot[afterDot.length() - 1] == '0') {
+        afterDot.pop_back();
+    }
 
-	result.units_ = resUnits.WholePart();
-	result.fractional_ += resFraction.WholePart();
-
-	return result;*/
-
-
-	/*Integer unit = Real(units_).GetUnits() / Real(other.units_).GetUnits();
-	Fraction fractional = Real(fractional_).GetFractional() / Real(other.fractional_).GetFractional();
-
-	return Real(unit, fractional);*/
-
-
-	result.units_ = units_ / other.units_;
-	result.fractional_ = fractional_ / other.fractional_;
-
-	return result;
-}
-
-
-
-// Операторы сравнения
-
-bool Real::operator<(const Real& other) const
-{
-	if (units_ == other.units_)
-	{
-		return fractional_ < other.fractional_;
-	}
-	else
-	{
-		return units_ < other.units_;
-	}
-}
-
-bool Real::operator>(const Real& other) const
-{
-	if (units_ == other.units_)
-	{
-		return fractional_ > other.fractional_;
-	}
-	else
-	{
-		return units_ > other.units_;
-	}
-}
-
-bool Real::operator<=(const Real& other) const
-{
-	if (units_ == other.units_)
-	{
-		return fractional_ <= other.fractional_;
-	}
-	else
-	{
-		return units_ <= other.units_;
-	}
-}
-
-bool Real::operator>=(const Real& other) const
-{
-	if (units_ == other.units_)
-	{
-		return fractional_ >= other.fractional_;
-	}
-	else
-	{
-		return units_ >= other.units_;
-	}
-}
-
-bool Real::operator==(const Real& other) const
-{
-	return units_ == other.units_ && fractional_ == other.fractional_;
-}
-
-bool Real::operator!=(const Real& other) const
-{
-	if (units_ == other.units_ && fractional_ == other.fractional_)
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
-}
-
-
-// Операторы присваивания
-Real& Real::operator+=(const Real& other)
-{
-	units_ += other.units_;
-	fractional_ += other.fractional_;
-	units_ += fractional_.WholePart();
-	return *this;
-}
-
-Real& Real::operator-=(const Real& other) 
-{
-	units_ -= other.units_;
-	fractional_ -= other.fractional_;
-	units_ += fractional_.WholePart();
-	return *this;
-}
-
-Real& Real::operator*=(const Real& other) 
-{
-	units_ *= other.units_;
-	fractional_ *= other.fractional_;
-	units_ += fractional_.WholePart();
-	return *this;
-}
-
-Real& Real::operator/=(const Real& other)  // пофиксить
-{
-	*this = *this / other;
-
-	return *this;
-}
-
-
-// Унарные операторы
-Real Real::operator+()
-{
-	this->units_ = units_;
-	this->fractional_ = fractional_;
-	return *this;
-}
-
-Real Real::operator-() const
-{
-	Real res = { *this };
-	res.units_ = units_ * -1;
-	res.fractional_ = fractional_;
-	return res;
-}
-
-
-
-// Оператор вывода
-std::ostream& operator<<(std::ostream& out, const Real& obj)
-{
-	if (obj.fractional_ == Fraction(0))
-	{
-		return out << obj.units_ << "(" << obj.fractional_ << ')';
-	}
-	else
-	{
-		return out << obj.units_ << "(" << obj.fractional_ << ')';
-	}
-
+    if (afterDot == "") {
+        afterDot = "0";
+    }
 }

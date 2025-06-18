@@ -1,4 +1,4 @@
-#include "..\hd\String.h"
+/*#include "..\hd\String.h"
 
 
 String::String() 
@@ -207,3 +207,4 @@ void String::pop_back()
 	size_ - 1;
 	capacity_ - 1;
 }
+*/

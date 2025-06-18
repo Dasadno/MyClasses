@@ -1,56 +1,22 @@
-#pragma once
+#ifndef POINT2D_HPP
+#define POINT2D_HPP
+#include "Real.hpp"
+#include "Vector.hpp"
 
-#include "../hd/Fraction.hpp"
-#include "../hd/Integer.hpp"
-#include "../hd/Real.hpp"
 
-class Point2d
-{
+
+class Point2D {
 public:
-
-	// конструкторы
-	Point2d(Real num1, Real num2) : num1_(num1), num2_(num2) {}
-	Point2d() : Point2d(Real(0 / 1), Real(0 / 1)) {}
-
-	// деструктор
-	virtual ~Point2d() = default;
-
-
-	// setters
-	void SetNum1(const Real num1);
-	void SetNum2(const Real num2);
-
-	// getters
-	Real GetNum1();
-	Real GetNum2();
-
- 
-
-	// —равнительный оператор 
-	friend bool operator==(const Point2d& num1, const Point2d& num2);
-
-
-	// проверка одинаковости двух точек
-	bool IsEqualPoints(const Point2d& other);
-
-
-	// –асчет рассто€ни€ между точками
-	friend Real DistanceBetweenPoints(const Point2d& x, const Point2d& y);
-
-
-
-	// –асчет корн€ - дл€ формулы нахождени€ рассто€ни€ между точками
-	static Real MySqrt(Real& number, const Real& epsilon = Real(1e-10));
-
-
-
-	// ќператор ввода и вывода
-	friend std::ostream& operator<< (std::ostream& out, const Point2d obj);
-	friend std::istream& operator>> (std::istream& in, const Point2d obj);
+	Point2D();
+	Point2D(Real x, Real y);
+	void SetPosition(Real x, Real y);
+	Vector GetPosition();
 
 private:
-
-	// пол€
-	Real num1_;
-	Real num2_;
+	Real coordinateX_;
+	Real coordinateY_;
 };
+
+
+
+#endif // !POINT2D_HPP

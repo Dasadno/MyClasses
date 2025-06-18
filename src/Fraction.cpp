@@ -106,6 +106,11 @@ Fraction Fraction::ReduceFraction()
 	return *this;
 }
 
+
+Integer Fraction::FtoInteger() {
+	return num_ / denum_;
+}
+
 Fraction Fraction::ReverseFraction()
 {
 	std::swap(num_, denum_);

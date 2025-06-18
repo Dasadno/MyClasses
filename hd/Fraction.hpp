@@ -55,6 +55,8 @@ public:
 	// сокращенная дробь
 	Fraction ReduceFraction();
 
+	Integer FtoInteger();
+
 	// обратная дробь
 	Fraction ReverseFraction();
 
