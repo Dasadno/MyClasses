@@ -39,7 +39,7 @@ public:
 
 	void MatrixOut();
 
-	friend std::ostream& operator<<(std::ostream& outs, const Matrix& rso); // -- Haven't understood how to make it work yet
+	friend std::ostream& operator<<(std::ostream& outs, const Matrix& rso);
 
 
 };

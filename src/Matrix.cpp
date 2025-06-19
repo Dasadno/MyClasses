@@ -85,7 +85,7 @@ void Matrix::operator*=(Matrix matrix) {
 			}
 		}
 	}
-	else { std::cout << "Matrix not match"; }
+	else { std::cerr << "Matrix not match"; }
 }
 
 
@@ -120,8 +120,8 @@ Matrix Matrix::operator-(Matrix matrix)
 	return answer;
 };
 
-Matrix Matrix::operator/(Matrix matrix) { //Не реализовано
-	return *this * matrix.UpDownMatrix();
+Matrix Matrix::operator/(Matrix matrix) {
+	return *this * matrix.UpDownMatrix(); 
 }
 
 Matrix Matrix::operator*(Matrix matrix) 
@@ -138,7 +138,7 @@ Matrix Matrix::operator*(Matrix matrix)
 		}
 		return answer;
 	}
-	else { std::cout << "Error: Matrix not match"; }
+	else { std::cerr << "Matrix not match"; }
 };
 
 

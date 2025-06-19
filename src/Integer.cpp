@@ -9,30 +9,36 @@
 			sign_ = false;
 			value_ = abs(number);
 		}
-		else {
+		else 
+		{
 			sign_ = true;
 			value_ = static_cast<unsigned>(number);
 		}
 	}
 
-	void Integer::setSign(bool sign) {
+	void Integer::setSign(bool sign) 
+	{
 		this->sign_ = sign;
 	}
 
-	void Integer::setValue(unsigned value) {
+	void Integer::setValue(unsigned value) 
+	{
 		this->value_ = value;
 	}
 
-	bool Integer::getSign()const {
+	bool Integer::getSign()const 
+	{
 		return sign_;
 	}
 
-	long Integer::getValue()const {
+	long Integer::getValue()const 
+	{
 		return value_;
 	}	
 
 	int Integer::ToInt() {
-		if (isPositive() == true) {
+		if (isPositive() == true) 
+		{
 			return int(value_);
 		}
 		else {
@@ -57,19 +63,23 @@
 		}
 		return true;
 	}
-	bool Integer::isOdd() {
+	bool Integer::isOdd() 
+	{
 		return value_ % 2 != 0;
 	}
 
-	bool Integer::isEven() {
+	bool Integer::isEven() 
+	{
 		return value_ % 2 == 0;
 	}
 
-	bool Integer::isPositive()const {
+	bool Integer::isPositive()const 
+	{
 		return getSign();
 	}
 
-	bool Integer::isNegative() const{
+	bool Integer::isNegative() const
+	{
 		return !getSign();
 	}
 
@@ -78,7 +88,8 @@
 		return std::gcd(value_, other.value_) == 1;
 	}
 
-	std::string Integer::ToString() {
+	std::string Integer::ToString() 
+	{
 		return std::to_string(value_);
 	}
 
@@ -107,11 +118,13 @@
 				result.sign_ = sign_;
 				result.value_ = value_ - other.value_;
 			}
-			else if (value_ < other.value_) {
+			else if (value_ < other.value_) 
+			{
 				result.sign_ = other.sign_;
 				result.value_ = other.value_ - value_;
 			}
-			else {
+			else 
+			{
 				result.sign_ = false;
 				result.value_ = true;
 			}
@@ -120,7 +133,8 @@
 		
 	}
 
-	Integer Integer::operator + () {
+	Integer Integer::operator + () 
+	{
 		return *this;
 	}
 
