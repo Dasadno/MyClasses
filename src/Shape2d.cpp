@@ -2,21 +2,21 @@
 
 
 
-Shape2D::Shape2D(int amountOfPoints) {
+Shape::Shape(int amountOfPoints) {
 	shape_ = new Point2D[amountOfPoints];
 	amountOfPoints_ = amountOfPoints;
 }
 
 
-Shape2D::~Shape2D() {
+Shape::~Shape() {
 	delete[] shape_;
 }
 
-void Shape2D::Clear() {
+void Shape::Clear() {
 	shape_ = NULL;
 }
 
-void Shape2D::AddNewPoint(Point2D point) {
+void Shape::AddNewPoint(Point2D point) {
 	amountOfPoints_ += 1;
 	Point2D* newShape = new Point2D[amountOfPoints_.ToInt()];
 	for (int i = 0; i < amountOfPoints_.ToInt(); i++) {
@@ -25,4 +25,4 @@ void Shape2D::AddNewPoint(Point2D point) {
 	newShape[amountOfPoints_.ToInt() - 1] = point;
 }
 
-void Shape2D::RemoveDotAt(Integer index) {}
+void Shape::RemoveDotAt(Integer index) {}

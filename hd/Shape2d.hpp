@@ -4,11 +4,11 @@
 #include "Point2D.hpp"
 
 
-class Shape2D {
+class Shape {
 public:
-	Shape2D(int amountOfPoints);
+	Shape(int amountOfPoints);
 
-	~Shape2D();
+	~Shape();
 
 
 	void Clear();

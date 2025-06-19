@@ -1,6 +1,6 @@
 #include "..\hd\Integer.hpp"
 
-	//Êîíñòðóêòîðû
+
 	Integer::Integer() :Integer(false, 0u) { }
 	Integer::Integer(bool sign, unsigned units) :sign_(sign), value_(value_) { }
 	Integer::Integer(int number) {
@@ -14,7 +14,7 @@
 			value_ = static_cast<unsigned>(number);
 		}
 	}
-	//Ñåòåðû
+
 	void Integer::setSign(bool sign) {
 		this->sign_ = sign;
 	}
@@ -22,7 +22,7 @@
 	void Integer::setValue(unsigned value) {
 		this->value_ = value;
 	}
-	//Ãåòåðû
+
 	bool Integer::getSign()const {
 		return sign_;
 	}
@@ -139,7 +139,7 @@
 		}
 		return result;
 	}
-	//Îïåðàòîð äåëåíèÿ
+
 	Integer Integer::operator / (const Integer& other) const
 	{
 		if (other.value_ == 0)
@@ -160,7 +160,7 @@
 		}
 		return result;
 	}
-	//Îïåðàòîð âû÷èòàíèÿ
+
 	Integer& Integer::operator - (const Integer& other) const
 	{
 		Integer result;
@@ -191,7 +191,7 @@
 		}	
 		return result;
 	}
-	//Óíàðíûé -
+
 	Integer Integer::operator - ()
 	{
 		Integer copy{ *this };
@@ -211,7 +211,7 @@
 			exit(-1);
 		}
 	}
-	// Îïåðàòîðû ñðàâíåíèÿ
+	
 	bool operator == (const Integer& num, const Integer& other)
 	{
 		if (num.getSign() == other.getSign())
@@ -286,7 +286,7 @@
 		}
 	}
 
-	//Äåêðåìåíò, èíêðåìåíò (Ïðåôèêñíûå)
+
 	Integer& Integer::operator++ ()
 	{
 		Integer copy{ *this };
@@ -310,7 +310,7 @@
 		}
 		return copy;
 	}
-	//Äåêðåìåíò, èíêðåìåíò (Ïîñòôèêñíûå)
+	
 	Integer Integer::operator++ (int)
 	{
 		Integer copy{ *this };
@@ -336,7 +336,7 @@
 		}
 		return copy;
 	}
-	// îïåðàòîðû ïðèñâàèâàíèÿ
+	
 	Integer& Integer::operator += (Integer other)
 	{
 		return *this = *this + other;

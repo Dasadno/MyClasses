@@ -19,15 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hd\ScalarStrategy.hpp" />
     <ClCompile Include="hd\Shape2d.hpp" />
-    <ClCompile Include="hd\VectorProcessingStrategy.hpp" />
-    <ClCompile Include="hd\VectorSumStrategy.hpp" />
     <ClCompile Include="src\Point.cpp" />
     <ClCompile Include="src\Shape2d.cpp" />
-    <ClCompile Include="src\VectorSumStrategy.cpp" />
     <ClCompile Include="src\Matrix.cpp" />
-    <ClCompile Include="src\ScalarStrategy.cpp" />
     <ClCompile Include="src\Figure.cpp" />
     <ClCompile Include="src\Fraction.cpp" />
     <ClCompile Include="src\Integer.cpp" />
@@ -45,6 +40,7 @@
     <ClInclude Include="hd\Real.hpp" />
     <ClInclude Include="hd\String.h" />
     <ClInclude Include="hd\Vector.hpp" />
+    <ClInclude Include="Vector.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
