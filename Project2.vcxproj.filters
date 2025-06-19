@@ -39,10 +39,10 @@
     <ClCompile Include="src\Vector.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="hd\Shape2d.hpp">
+    <ClCompile Include="hd\Segment.hpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\Shape2d.cpp">
+    <ClCompile Include="src\Segment.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="src\Point.cpp">

@@ -1,22 +1,22 @@
-#include "../hd/Shape2D.hpp"
+#include "../hd/Segment.hpp"
 
 
 
-Shape::Shape(int amountOfPoints) {
+Segment::Segment(int amountOfPoints) {
 	shape_ = new Point2D[amountOfPoints];
 	amountOfPoints_ = amountOfPoints;
 }
 
 
-Shape::~Shape() {
+Segment::~Segment() {
 	delete[] shape_;
 }
 
-void Shape::Clear() {
+void Segment::Clear() {
 	shape_ = NULL;
 }
 
-void Shape::AddNewPoint(Point2D point) {
+void Segment::AddNewPoint(Point2D point) {
 	amountOfPoints_ += 1;
 	Point2D* newShape = new Point2D[amountOfPoints_.ToInt()];
 	for (int i = 0; i < amountOfPoints_.ToInt(); i++) {
@@ -25,4 +25,4 @@ void Shape::AddNewPoint(Point2D point) {
 	newShape[amountOfPoints_.ToInt() - 1] = point;
 }
 
-void Shape::RemoveDotAt(Integer index) {}
+void Segment::RemoveDotAt(Integer index) {}

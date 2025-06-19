@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hd\Shape2d.hpp" />
+    <ClCompile Include="hd\Segment.hpp" />
     <ClCompile Include="src\Point.cpp" />
-    <ClCompile Include="src\Shape2d.cpp" />
+    <ClCompile Include="src\Segment.cpp" />
     <ClCompile Include="src\Matrix.cpp" />
     <ClCompile Include="src\Figure.cpp" />
     <ClCompile Include="src\Fraction.cpp" />

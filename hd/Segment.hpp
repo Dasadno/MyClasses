@@ -1,14 +1,14 @@
-#ifndef SHAPE_HPP
-#define SHAPE_HPP
+#ifndef SEGMENT_HPP
+#define SEGMENT_HPP
 
 #include "Point2D.hpp"
 
 
-class Shape {
+class Segment {
 public:
-	Shape(int amountOfPoints);
+	Segment(int amountOfPoints);
 
-	~Shape();
+	~Segment();
 
 
 	void Clear();
@@ -23,4 +23,4 @@ private:
 
 };
 
-#endif // !SHAPE_HPP
+#endif // !SEGMENT_HPP
