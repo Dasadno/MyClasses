@@ -186,13 +186,17 @@ Fraction Fraction::operator/(const Fraction& other) const
 
 
 // Операторы сравнения
-bool Fraction::operator==(const Fraction& other) const
+bool Fraction::operator==(Fraction& other) 
 {
+	ReduceFraction();
+	other.ReduceFraction();
 	return num_ == other.num_ && denum_ == other.denum_;
 }
 
-bool Fraction::operator!=(const Fraction& other) const
+bool Fraction::operator!=(Fraction& other) 
 {
+	ReduceFraction();
+	other.ReduceFraction();
 	if (num_ != other.num_ && denum_ != other.denum_)
 	{
 		return true;
@@ -212,10 +216,12 @@ bool Fraction::operator!=(const Fraction& other) const
 
 }
 
-bool Fraction::operator>(const Fraction& other) const
+bool Fraction::operator>(Fraction& other)
 {
 	Integer num1;
 	Integer num2;
+	ReduceFraction();
+	other.ReduceFraction();
 	if (sign_ == other.sign_)
 	{
 		num1 = num_ * other.denum_;
@@ -232,10 +238,14 @@ bool Fraction::operator>(const Fraction& other) const
 	}
 }
 
-bool Fraction::operator<(const Fraction& other) const
+bool Fraction::operator<( Fraction& other) 
 {
 	Integer num1;
 	Integer num2;
+
+	ReduceFraction();
+	other.ReduceFraction();
+
 	if (sign_ == other.sign_)
 	{
 		num1 = num_ * other.denum_;
@@ -252,10 +262,14 @@ bool Fraction::operator<(const Fraction& other) const
 	}
 }
 
-bool Fraction::operator>=(const Fraction& other) const
+bool Fraction::operator>=(Fraction& other) 
 {
 	Integer num1;
 	Integer num2;
+
+	ReduceFraction();
+	other.ReduceFraction();
+
 	if (sign_ == other.sign_)
 	{
 		num1 = num_ * other.denum_;
@@ -272,10 +286,14 @@ bool Fraction::operator>=(const Fraction& other) const
 	}
 }
 
-bool Fraction::operator<=(const Fraction& other) const
+bool Fraction::operator<=(Fraction& other) 
 {
 	Integer num1;
 	Integer num2;
+
+	ReduceFraction();
+	other.ReduceFraction();
+
 	if (sign_ == other.sign_)
 	{
 		num1 = num_ * other.denum_;

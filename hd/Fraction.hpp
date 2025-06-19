@@ -80,17 +80,19 @@ public:
 
 
 	// Операторы сравнения
-	bool operator==(const Fraction& other) const;
+	
 
-	bool operator!=(const Fraction& other) const;
+	bool operator==(Fraction& other);
 
-	bool operator<(const Fraction& other) const;
+	bool operator!=(Fraction& other);
 
-	bool operator>(const Fraction& other) const;
+	bool operator<(Fraction& other);
 
-	bool operator<=(const Fraction& other) const;
+	bool operator>(Fraction& other);
 
-	bool operator>=(const Fraction& other) const;
+	bool operator<=(Fraction& other);
+
+	bool operator>=(Fraction& other);
 
 
 	// Операторы присваивания
